@@ -13,12 +13,13 @@
 
   .logo {
     display: flex;
-    cursor: pointer;
+    font-weight: 500;
     p {
       margin: 0px;
       transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
     }
     .name {
+      font-weight: 500;
       display: flex;
       position: relative;
       overflow: hidden;
@@ -29,12 +30,10 @@
         position: relative;
         transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
         &:nth-of-type(2) {
-          padding-left: 0.3em;
-        }
-        &:nth-of-type(3) {
           position: absolute;
-          left: 120px;
-          padding-left: 0.3em;
+          left: 100%;
+          opacity: 0;
+          transform: translateX(20px);
         }
       }
     }
@@ -43,15 +42,14 @@
         transform: rotate(360deg);
       }
       .name {
-        padding-right: 30px;
-        .codeBy {
-          transform: translateX(-100%);
-        }
-        .caglar {
-          transform: translateX(-65px);
-        }
-        .bora {
-          transform: translateX(-65px);
+        p {
+          &:nth-of-type(1) {
+            transform: translateX(-100%);
+          }
+          &:nth-of-type(2) {
+            opacity: 1;
+            transform: translateX(0);
+          }
         }
       }
     }
@@ -66,7 +64,6 @@
       position: relative;
       z-index: 1;
       padding: 15px;
-      cursor: pointer;
       &:hover {
         .indicator {
           transform: scale(1);
@@ -84,9 +81,6 @@
         transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
       }
     }
-    a {
-      cursor: pointer;
-    }
   }
 }
 .headerButtonContainer {
@@ -102,7 +96,6 @@
     height: 80px;
     border-radius: 50%;
     background-color: #1c1d20;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,5 +136,45 @@
       transform: rotate(-45deg);
       top: 0px;
     }
+  }
+}
+
+.menuIcon {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.open {
+    animation: rotateIn 0.3s ease forwards;
+  }
+
+  &.close {
+    animation: rotateOut 0.3s ease forwards;
+  }
+}
+
+@keyframes rotateIn {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes rotateOut {
+  0% {
+    transform: rotate(360deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
   }
 }

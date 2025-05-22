@@ -9,10 +9,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Rounded from "@/app/common/RoundedButton";
 import Magnetic from "@/app/common/Magnetic";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function index() {
-  const header = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const header = useRef(null);
   const pathname = usePathname();
   const button = useRef(null);
 
@@ -48,33 +50,58 @@ export default function index() {
   return (
     <>
       <div ref={header} className={styles.header}>
-        <div className={styles.logo}>
+        <div className={`cursor-hover ${styles.logo}`}>
           <p className={styles.copyright}>©</p>
-          <div className={styles.name}>
-            <p className={styles.codeBy}>Code by</p>
-            <p className={styles.caglar}>Caglar</p>
-            <p className={styles.bora}>Bora</p>
-          </div>
+          <p>Caglar Bora</p>
         </div>
-        <div className={styles.nav}>
-          <Magnetic>
-            <div className={styles.el}>
-              <Link href={"/work"}>Work</Link>
-              <div className={styles.indicator}></div>
-            </div>
-          </Magnetic>
-          <Magnetic>
-            <div className={styles.el}>
-              <Link href={"/about"}>About</Link>
-              <div className={styles.indicator}></div>
-            </div>
-          </Magnetic>
-          <Magnetic>
-            <div className={styles.el}>
-              <Link href={"/contact"}>Contact</Link>
-              <div className={styles.indicator}></div>
-            </div>
-          </Magnetic>
+        <div className={`cursor-hover ${styles.nav}`}>
+          {isOpen ? (
+            <>
+              <div className="flex">
+                <Magnetic>
+                  <div className={styles.el}>
+                    <Link href={"/work"} className="font-medium">
+                      Work
+                    </Link>
+                    <div className={styles.indicator}></div>
+                  </div>
+                </Magnetic>
+                <Magnetic>
+                  <div className={styles.el}>
+                    <Link href={"/about"} className="font-medium">
+                      About
+                    </Link>
+                    <div className={styles.indicator}></div>
+                  </div>
+                </Magnetic>
+                <Magnetic>
+                  <div className={styles.el}>
+                    <Link href={"/contact"} className="font-medium">
+                      Contact
+                    </Link>
+                    <div className={styles.indicator}></div>
+                  </div>
+                </Magnetic>
+              </div>
+              <Image
+                src={"/assets/menu-icon-x.svg"}
+                width={75}
+                height={75}
+                alt="menu-close-icon"
+                onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
+                className={`${styles.menuIcon} ${styles.close} cursor-hover`}
+              />
+            </>
+          ) : (
+            <Image
+              src={"/assets/menu-icon.svg"}
+              width={75}
+              height={75}
+              alt="menu-icon"
+              onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
+              className={`${styles.menuIcon} ${styles.open}`}
+            />
+          )}
         </div>
       </div>
       <div ref={button} className={styles.headerButtonContainer}>

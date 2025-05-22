@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import Image from "next/image";
 import Rounded from "@/app/common/RoundedButton";
+import Button from "../ui/Button";
 
 const projects = [
   {
@@ -114,6 +115,16 @@ export default function Home() {
       }}
       className={styles.projects}
     >
+      <div className="flex justify-between items-center pb-5">
+        <h1 className="font-medium text-[30px]">works.</h1>
+        <Button
+          title={"More work."}
+          path={"/work"}
+          style={`
+             text-black hover:bg-black hover:text-white transition-colors duration-300 ease-in-out
+          `}
+        />
+      </div>
       <div className={styles.body}>
         {projects.map((project, index) => {
           return (
@@ -127,9 +138,6 @@ export default function Home() {
           );
         })}
       </div>
-      <Rounded>
-        <p>More work</p>
-      </Rounded>
       <>
         <motion.div
           ref={modalContainer}

@@ -68,8 +68,8 @@ export default function Home() {
             fill="white"
           />
         </svg>
-        <p>Software Engineer</p>
-        <p>Front-End Developer - Freelance</p>
+        <p className="cursor-hover">Software Engineer</p>
+        <p className="cursor-hover">Front-End Developer - Freelance</p>
       </div>
     </motion.main>
   );

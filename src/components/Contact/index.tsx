@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useScroll, motion, useTransform, useSpring } from "framer-motion";
 import Magnetic from "@/app/common/Magnetic";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function index() {
   const container = useRef(null);
@@ -18,19 +19,33 @@ export default function index() {
 
   const date = new Date();
   const showTime = date.getHours() + ":" + date.getMinutes() + " GMT+3";
+  const router = useRouter();
+
   return (
     <motion.div style={{ y }} ref={container} className={styles.contact}>
       <div className={styles.body}>
         <div className={styles.title}>
           <span>
             <div className={styles.imageContainer}>
-              <Image fill={true} alt={"image"} src={`/images/test.png`} />
+              <Image
+                fill={true}
+                alt={"image"}
+                src={`/images/test.png`}
+                className="cursor-hover"
+              />
             </div>
-            <h2>Let's work</h2>
+            <h2 className="cursor-hover">We should work</h2>
           </span>
-          <h2>together</h2>
-          <motion.div style={{ x }} className={styles.buttonContainer}>
-            <Rounded backgroundColor={"#334BD3"} className={styles.button}>
+          <h2 className="cursor-hover">together</h2>
+          <motion.div
+            style={{ x }}
+            className={`cursor-hover ${styles.buttonContainer}`}
+          >
+            <Rounded
+              backgroundColor={"#f45232"}
+              className={styles.button}
+              onClick={() => router.push("/contact")}
+            >
               <p>Get in touch</p>
             </Rounded>
           </motion.div>
@@ -48,7 +63,7 @@ export default function index() {
             />
           </motion.svg>
         </div>
-        <div className={styles.nav}>
+        <div className={`cursor-hover ${styles.nav}`}>
           <Rounded>
             <p>boracaglarbaran@gmail.com</p>
           </Rounded>

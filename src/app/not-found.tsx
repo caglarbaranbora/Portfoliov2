@@ -1,4 +1,7 @@
+"use client";
+import { slideUp } from "@/components/Description/animation";
 import Button from "@/components/ui/Button";
+import { motion } from "framer-motion";
 
 export default function NotFound() {
   return (

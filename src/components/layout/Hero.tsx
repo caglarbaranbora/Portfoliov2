@@ -25,7 +25,7 @@ export default function Hero() {
         <div className="items-center justify-between">
           <div className="flex justfy-center items-center">
             <button
-              className="cursor-pointer p-2 text-[26px] font-medium hover:bg-gray-100"
+              className=" p-2 text-[26px] font-medium hover:bg-gray-100"
               onClick={(e) => {
                 e.preventDefault();
                 const email = "boracaglarbaran@gmail.com";
@@ -36,7 +36,7 @@ export default function Hero() {
               boracaglarbaran@gmail.com
             </button>
             <BsCopy
-              className="cursor-pointer hover:text-red-500"
+              className=" hover:text-red-500"
               onClick={async () => {
                 try {
                   await navigator.clipboard.writeText(

@@ -56,7 +56,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
         p {
           margin: 0px;
           font-size: 16px;
@@ -91,7 +90,6 @@
         h3 {
           margin: 0px;
           padding: 2.5px;
-          cursor: pointer;
         }
         p {
           &::after {
@@ -119,7 +117,6 @@
         }
         h3 {
           color: grey;
-          cursor: default;
           font-weight: 300;
           font-size: 1em;
         }
