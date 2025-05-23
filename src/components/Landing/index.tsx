@@ -1,3 +1,4 @@
+// landing/index.tsx
 "use client";
 import Image from "next/image";
 import styles from "./style.module.scss";
@@ -6,11 +7,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { slideUp } from "./animation";
 import { motion } from "framer-motion";
+import { useRoute } from "@/contexts/RouteContext";
 
 export default function Home() {
   const firstText = useRef(null);
   const secondText = useRef(null);
   const slider = useRef(null);
+  const { isTransitionComplete } = useRoute();
   let xPercent = 0;
   let direction = -1;
 
@@ -41,11 +44,26 @@ export default function Home() {
     xPercent += 0.1 * direction;
   };
 
+  // Preloader tamamlandıktan sonra animasyonu başlat
+  const pageVariants = {
+    initial: {
+      y: 300,
+    },
+    enter: {
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.33, 1, 0.68, 1],
+        delay: isTransitionComplete ? 0.2 : 0,
+      },
+    },
+  };
+
   return (
     <motion.main
-      variants={slideUp}
+      variants={pageVariants}
       initial="initial"
-      animate="enter"
+      animate={isTransitionComplete ? "enter" : "initial"}
       className={styles.landing}
     >
       <Image src="/images/test.png" fill={true} alt="background" />

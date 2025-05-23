@@ -36,7 +36,7 @@ export default function index() {
             </div>
             <h2 className="cursor-hover">We should work</h2>
           </span>
-          <h2 className="cursor-hover">together</h2>
+          <h2 className="cursor-hover">together!</h2>
           <motion.div
             style={{ x }}
             className={`cursor-hover ${styles.buttonContainer}`}

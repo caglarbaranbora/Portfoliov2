@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import CustomCursor from "@/components/CustomCursor";
+import TransitionWrapper from "@/components/TransitionWrapper";
+import { RouteProvider } from "@/contexts/RouteContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="overflow-x-hidden">
       <body className={`${inter.className} overflow-x-hidden`}>
-        <CustomCursor />
-        {children}
+        <RouteProvider>
+          <TransitionWrapper>
+            <CustomCursor />
+            {children}
+          </TransitionWrapper>
+        </RouteProvider>
       </body>
     </html>
   );
