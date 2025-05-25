@@ -11,7 +11,15 @@ import Magnetic from "@/app/common/Magnetic";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function index() {
+interface HeaderProps {
+  textColor?: string;
+  isDark?: boolean;
+}
+
+export default function index({
+  textColor = "#fff",
+  isDark = false,
+}: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const header = useRef(null);
@@ -50,20 +58,26 @@ export default function index() {
   return (
     <>
       <div ref={header} className={styles.header}>
-        <div className={`cursor-hover ${styles.logo}`}>
+        <div
+          className={`cursor-hover ${styles.logo}`}
+          style={{ color: textColor }}
+        >
           <p className={styles.copyright}>©</p>
           <p>Caglar Bora</p>
         </div>
         <div className={`cursor-hover ${styles.nav}`}>
           {isOpen ? (
             <>
-              <div className="flex">
+              <div className="flex" style={{ color: textColor }}>
                 <Magnetic>
                   <div className={styles.el}>
                     <Link href={"/work"} className="font-medium">
                       Work
                     </Link>
-                    <div className={styles.indicator}></div>
+                    <div
+                      className={styles.indicator}
+                      style={{ backgroundColor: textColor }}
+                    ></div>
                   </div>
                 </Magnetic>
                 <Magnetic>
@@ -71,7 +85,10 @@ export default function index() {
                     <Link href={"/about"} className="font-medium">
                       About
                     </Link>
-                    <div className={styles.indicator}></div>
+                    <div
+                      className={styles.indicator}
+                      style={{ backgroundColor: textColor }}
+                    ></div>
                   </div>
                 </Magnetic>
                 <Magnetic>
@@ -79,27 +96,50 @@ export default function index() {
                     <Link href={"/contact"} className="font-medium">
                       Contact
                     </Link>
-                    <div className={styles.indicator}></div>
+                    <div
+                      className={styles.indicator}
+                      style={{ backgroundColor: textColor }}
+                    ></div>
                   </div>
                 </Magnetic>
               </div>
-              <Image
-                src={"/assets/menu-icon-x.svg"}
-                width={75}
-                height={75}
-                alt="menu-close-icon"
-                onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
-                className={`${styles.menuIcon} ${styles.close} cursor-hover`}
-              />
+              {isDark ? (
+                <Image
+                  src={"/assets/menu-icon-x-black.svg"}
+                  width={75}
+                  height={75}
+                  alt="menu-close-icon"
+                  onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
+                  className={`${styles.menuIcon} ${styles.close} cursor-hover`}
+                />
+              ) : (
+                <Image
+                  src={"/assets/menu-icon-x.svg"}
+                  width={75}
+                  height={75}
+                  alt="menu-close-icon"
+                  onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
+                  className={`${styles.menuIcon} ${styles.close} cursor-hover`}
+                />
+              )}
             </>
+          ) : isDark ? (
+            <Image
+              src={"/assets/menu-icon-black.svg"}
+              width={75}
+              height={75}
+              alt="menu-close-icon"
+              onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
+              className={`${styles.menuIcon} ${styles.close} cursor-hover`}
+            />
           ) : (
             <Image
               src={"/assets/menu-icon.svg"}
               width={75}
               height={75}
-              alt="menu-icon"
+              alt="menu-close-icon"
               onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
-              className={`${styles.menuIcon} ${styles.open}`}
+              className={`${styles.menuIcon} ${styles.close} cursor-hover`}
             />
           )}
         </div>

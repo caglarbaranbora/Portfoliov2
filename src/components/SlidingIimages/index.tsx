@@ -33,7 +33,7 @@ const slider2 = [
   },
   {
     color: "#d7d4cf",
-    src: "notluk/notlukPage.png",
+    src: "/image.png",
   },
   {
     color: "#e1dad6",

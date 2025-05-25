@@ -1,21 +1,27 @@
-// components/PageTransition/index.tsx
 "use client";
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { opacity, slideUp } from "./anim";
 
-interface PageTransitionProps {
-  pageName: string;
-  isInitialLoad?: boolean;
+const words = [
+  "Hello",
+  "Bonjour",
+  "Ciao",
+  "Olà",
+  "やあ",
+  "Hallå",
+  "Guten tag",
+  "Hallo",
+  "Merhaba",
+];
+
+interface IntroLoaderProps {
   onComplete?: () => void;
 }
 
-export default function PageTransition({
-  pageName,
-  isInitialLoad = false,
-  onComplete,
-}: PageTransitionProps) {
+export default function Index({ onComplete }: IntroLoaderProps) {
+  const [index, setIndex] = useState(0);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -23,30 +29,38 @@ export default function PageTransition({
   }, []);
 
   useEffect(() => {
-    // Sayfa geçişi animasyonu - direkt sayfa adını göster
-    setTimeout(() => {
-      onComplete?.();
-    }, 800);
-  }, [onComplete]);
+    if (index == words.length - 1) {
+      // Son kelime gösterildikten sonra biraz bekle ve onComplete'i çağır
+      setTimeout(() => {
+        onComplete?.();
+      }, 1500); // Biraz daha uzun bekle
+      return;
+    }
+    setTimeout(
+      () => {
+        setIndex(index + 1);
+      },
+      index == 0 ? 1000 : 150
+    );
+  }, [index, onComplete]);
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
     dimension.height
   } Q${dimension.width / 2} ${dimension.height + 300} 0 ${
     dimension.height
-  } L0 0`;
-
+  }  L0 0`;
   const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
     dimension.height
-  } Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height} L0 0`;
+  } Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height}  L0 0`;
 
   const curve = {
     initial: {
       d: initialPath,
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.2 },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0 },
     },
   };
 
@@ -59,9 +73,14 @@ export default function PageTransition({
     >
       {dimension.width > 0 && (
         <>
-          <motion.p variants={opacity} initial="initial" animate="enter">
+          <motion.p
+            variants={opacity}
+            initial="initial"
+            animate="enter"
+            exit="exit"
+          >
             <span></span>
-            {pageName}
+            {words[index]}
           </motion.p>
           <svg>
             <motion.path

@@ -7,10 +7,11 @@ import Description from "../components/Description";
 import SlidingImages from "../components/SlidingIimages";
 import Contact from "../components/Contact";
 import Header from "@/components/Header";
+import IntroLoader from "@/components/IntroLoader";
+import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;

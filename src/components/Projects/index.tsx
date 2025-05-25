@@ -5,8 +5,10 @@ import Project from "./components/project";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import Image from "next/image";
-import Rounded from "@/app/common/RoundedButton";
 import Button from "../ui/Button";
+import { useRouter } from "next/navigation";
+import Magnetic from "@/app/common/Magnetic";
+import Link from "next/link";
 
 const projects = [
   {
@@ -14,24 +16,28 @@ const projects = [
     src: "notluk/notlukSmall.png",
     color: "#000000",
     status: "Design & Development",
+    href: "/work/notluk",
   },
   {
     title: "CineQST",
     src: "cineQst/cineqst.png",
     color: "#8C8C8C",
     status: "Design & Development",
+    href: "/work/cineqst",
   },
   {
     title: "Tamam App",
     src: "tamam/tamam.png",
     color: "#EFE8D3",
     status: "Development",
+    href: "/work/tamam",
   },
   {
     title: "@Chat",
     src: "chat/1.png",
     color: "#706D63",
     status: "Design & Development",
+    href: "/work/chat",
   },
 ];
 
@@ -117,13 +123,14 @@ export default function Home() {
     >
       <div className="flex justify-between items-center pb-5">
         <h1 className="font-medium text-[30px]">works.</h1>
-        <Button
-          title={"More work."}
-          path={"/work"}
-          style={`
-             text-black hover:bg-black hover:text-white transition-colors duration-300 ease-in-out
-          `}
-        />
+        <Magnetic>
+          <Link
+            href={"/work"}
+            className="px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider"
+          >
+            More Work
+          </Link>
+        </Magnetic>
       </div>
       <div className={styles.body}>
         {projects.map((project, index) => {
@@ -132,6 +139,7 @@ export default function Home() {
               status={project.status}
               index={index}
               title={project.title}
+              href={project.href}
               manageModal={manageModal}
               key={index}
             />
