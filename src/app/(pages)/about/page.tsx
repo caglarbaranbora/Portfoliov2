@@ -8,28 +8,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const skills = [
   {
-    skill: "REACT",
-    image: "/assets/skills/react.svg",
-  },
-  {
-    skill: "NEXT.JS",
-    image: "/assets/skills/next.svg",
-  },
-  {
-    skill: "TYPESCRIPT",
-    image: "/assets/skills/typescript.svg",
-  },
-  {
-    skill: "JAVASCRIPT",
-    image: "/assets/skills/javascript.svg",
-  },
-  {
-    skill: "TAILWINDCSS",
-    image: "/assets/skills/tailwind.svg",
-  },
-  {
-    skill: "FRAMER MOTION",
-    image: "/assets/skills/framer.svg",
+    skill: "HTML",
+    image: "/assets/skills/html.svg",
   },
   {
     skill: "CSS",
@@ -40,24 +20,40 @@ const skills = [
     image: "/assets/skills/sass.svg",
   },
   {
-    skill: "FIGMA",
-    image: "/assets/skills/figma.svg",
+    skill: "TAILWINDCSS",
+    image: "/assets/skills/tailwind.svg",
   },
   {
-    skill: "HTML",
-    image: "/assets/skills/html.svg",
+    skill: "JAVASCRIPT",
+    image: "/assets/skills/javascript.svg",
+  },
+  {
+    skill: "TYPESCRIPT",
+    image: "/assets/skills/typescript.svg",
+  },
+  {
+    skill: "REACT",
+    image: "/assets/skills/react.svg",
   },
   {
     skill: "REACT NATIVE",
     image: "/assets/skills/react-native.svg",
   },
   {
+    skill: "NEXT.JS",
+    image: "/assets/skills/next.svg",
+  },
+  {
     skill: "GIT",
     image: "/assets/skills/git.svg",
   },
   {
-    skill: "AXIOS",
-    image: "/assets/skills/axios.svg",
+    skill: "FIGMA",
+    image: "/assets/skills/figma.svg",
+  },
+  {
+    skill: "FRAMER MOTION",
+    image: "/assets/skills/framer.svg",
   },
 ];
 
@@ -209,12 +205,16 @@ export default function page() {
                   {/* First set */}
                   {skills.map((skill, index) => (
                     <div key={index} className="flex items-center gap-8">
-                      <Image
-                        src={skill.image}
-                        alt={skill.skill}
-                        width={32}
-                        height={32}
-                      />
+                      <div className="w-8 h-8 flex-shrink-0">
+                        <img
+                          src={skill.image}
+                          alt={skill.skill}
+                          className="w-full h-full object-contain"
+                          onError={(e) => {
+                            console.log(`Error loading image: ${skill.image}`);
+                          }}
+                        />
+                      </div>
                       <span className="text-xl md:text-2xl font-medium text-gray-700 uppercase tracking-wider">
                         {skill.skill}
                       </span>
@@ -227,12 +227,16 @@ export default function page() {
                       key={`duplicate-${index}`}
                       className="flex items-center gap-8"
                     >
-                      <Image
-                        src={skill.image}
-                        alt={skill.skill}
-                        width={32}
-                        height={32}
-                      />
+                      <div className="w-8 h-8 flex-shrink-0">
+                        <img
+                          src={skill.image}
+                          alt={skill.skill}
+                          className="w-full h-full object-contain"
+                          onError={(e) => {
+                            console.log(`Error loading image: ${skill.image}`);
+                          }}
+                        />
+                      </div>
                       <span className="text-xl md:text-2xl font-medium text-gray-700 uppercase tracking-wider">
                         {skill.skill}
                       </span>
