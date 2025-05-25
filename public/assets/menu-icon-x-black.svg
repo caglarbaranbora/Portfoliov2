@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="svg2" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect x="150" y="150" width="50" height="50" style="fill: black;rgb(0, 0, 0);"/>
+  <rect x="200" y="200" width="50" height="50" style="fill: black;rgb(0, 0, 0); stroke-width: 1;"/>
+  <rect x="250" y="250" width="50" height="50" style="fill: black;rgb(0, 0, 0); stroke-width: 1;"/>
+  <rect x="150" y="250" width="50" height="50" style="fill: black;rgb(0, 0, 0); stroke-width: 1;"/>
+  <rect x="250" y="150" width="50" height="50" style="fill: black;rgb(0, 0, 0); stroke-width: 1;"/>
+</svg>
