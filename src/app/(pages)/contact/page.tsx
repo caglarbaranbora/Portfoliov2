@@ -257,7 +257,7 @@ export default function ContactPage() {
                   width={150}
                   height={150}
                   alt={"image"}
-                  src={`/assets/images/test.png`}
+                  src={`/assets/images/background.png`}
                   className="w-full h-full object-cover"
                 />
               </div>

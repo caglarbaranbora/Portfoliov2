@@ -34,7 +34,7 @@ export default function Contact() {
               <Image
                 fill={true}
                 alt={"image"}
-                src={`/assets/images/test.png`}
+                src={`/assets/images/background.png`}
                 className="cursor-hover"
               />
             </div>
