@@ -259,6 +259,8 @@ export default function ContactPage() {
                   alt={"image"}
                   src={`/assets/images/background.png`}
                   className="w-full h-full object-cover"
+                  priority={true}
+                  sizes=""
                 />
               </div>
               {/* Contact Details */}

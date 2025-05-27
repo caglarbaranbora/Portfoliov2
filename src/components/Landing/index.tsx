@@ -65,7 +65,12 @@ export default function Home() {
       animate={isTransitionComplete ? "enter" : "initial"}
       className={styles.landing}
     >
-      <Image src="/assets/images/background.png" fill={true} alt="background" />
+      <Image
+        src="/assets/images/background.png"
+        fill={true}
+        alt="background"
+        priority={true}
+      />
       <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider}>
           <p ref={firstText}>Caglar Baran Bora ─</p>

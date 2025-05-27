@@ -36,6 +36,7 @@ export default function Contact() {
                 alt={"image"}
                 src={`/assets/images/background.png`}
                 className="cursor-hover"
+                priority={true}
               />
             </div>
             <h2 className="cursor-hover">We should work</h2>

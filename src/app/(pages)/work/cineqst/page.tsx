@@ -76,6 +76,7 @@ export default function Page() {
               width={2000}
               height={1000}
               className="object-cover"
+              style={{ height: "auto", width: "auto" }}
             />
           </div>
         </div>

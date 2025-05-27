@@ -388,6 +388,7 @@ export default function Page() {
                               alt={project.title}
                               fill
                               className="object-cover"
+                              style={{ height: "auto", width: "auto" }}
                             />
                           </div>
 
@@ -496,6 +497,7 @@ export default function Page() {
                     height={0}
                     alt={project.title}
                     className="h-auto"
+                    style={{ height: "auto", width: "auto" }}
                   />
                 </div>
               ))}
