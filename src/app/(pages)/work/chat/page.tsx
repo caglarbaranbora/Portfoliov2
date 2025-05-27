@@ -3,12 +3,11 @@ import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Magnetic from "@/app/common/Magnetic";
-import RoundedButton from "@/app/common/RoundedButton";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function page() {
+export default function Page() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -20,7 +19,7 @@ export default function page() {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
+      new LocomotiveScroll();
 
       setTimeout(() => {
         document.body.style.cursor = "default";
@@ -41,31 +40,6 @@ export default function page() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-7xl mx-auto"
         >
-          {/* Back Button */}
-          <div className="mb-8">
-            <Magnetic>
-              <Link
-                href="/work"
-                className="inline-flex items-center text-gray-600 hover:text-black transition-colors"
-              >
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-                Back to work
-              </Link>
-            </Magnetic>
-          </div>
-
           <h1 className="text-[80px] md:text-[120px] lg:text-[160px] font-medium leading-none text-black mb-8">
             @CHAT
           </h1>
@@ -75,25 +49,13 @@ export default function page() {
               <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
                 Year
               </h3>
-              <p className="text-xl text-gray-700">2023</p>
+              <p className="text-xl text-gray-700">2024</p>
             </div>
             <div>
               <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
                 Role
               </h3>
               <p className="text-xl text-gray-700">Design & Development</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
-                Live Site
-              </h3>
-              <Magnetic>
-                <RoundedButton backgroundColor="#f45232">
-                  <Link href="#" target="_blank" className="block px-6 py-3">
-                    <span className="text-white font-medium">Visit Site</span>
-                  </Link>
-                </RoundedButton>
-              </Magnetic>
             </div>
           </div>
         </motion.div>
@@ -109,9 +71,10 @@ export default function page() {
         <div className="max-w-7xl mx-auto">
           <div className="relative w-full h-[60vh] md:h-[70vh] bg-gray-100 rounded-lg overflow-hidden">
             <Image
-              src="/images/chat/1.png"
-              alt="@Chat Project"
-              fill
+              src="/assets/images/chat/1.png"
+              alt="Notluk Project"
+              width={2000}
+              height={1000}
               className="object-cover"
             />
           </div>
@@ -138,15 +101,15 @@ export default function page() {
                     About the project
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                    @Chat is a modern real-time messaging application that
-                    brings people together through seamless communication. The
-                    platform features an intuitive interface designed for both
-                    individual and group conversations.
+                    @Chat is a simple and fast messaging app built with React
+                    Native (Expo) and powered by Firebase. As the name suggests,
+                    it focuses purely on real-time text communication, offering
+                    a clean and distraction-free chat experience.
                   </p>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    Built with performance and user experience in mind, @Chat
-                    offers real-time messaging, file sharing, and advanced
-                    features that make communication effortless and enjoyable.
+                    With no support for media sharing like photos, videos, or
+                    audio recordings, @chat keeps conversations lightweight,
+                    private, and focused on words — just how messaging began.
                   </p>
                 </div>
               </motion.div>
@@ -163,12 +126,26 @@ export default function page() {
                     Technologies
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-xl text-gray-700">React & Next.js</p>
-                    <p className="text-xl text-gray-700">TypeScript</p>
-                    <p className="text-xl text-gray-700">Socket.io</p>
-                    <p className="text-xl text-gray-700">Node.js</p>
-                    <p className="text-xl text-gray-700">MongoDB</p>
-                    <p className="text-xl text-gray-700">TailwindCSS</p>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">
+                        React & React-Native Expo
+                      </p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">TypeScript</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Nativewind</p>
+                    </Magnetic>
+
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Firebase</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">
+                        Gesture Handler & Reanimated & Lottie
+                      </p>
+                    </Magnetic>
                   </div>
                 </div>
 
@@ -177,13 +154,16 @@ export default function page() {
                     Features
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-xl text-gray-700">Real-time messaging</p>
-                    <p className="text-xl text-gray-700">Group conversations</p>
-                    <p className="text-xl text-gray-700">File sharing</p>
-                    <p className="text-xl text-gray-700">Message encryption</p>
+                    <p className="text-xl text-gray-700">Real-time Messaging</p>
+                    <p className="text-xl text-gray-700">Cross-Platform</p>
+                    <p className="text-xl text-gray-700">Simple & Private</p>
                     <p className="text-xl text-gray-700">
-                      Cross-platform support
+                      Lightweight Interface
                     </p>
+                    <p className="text-xl text-gray-700">
+                      1-on-1 Conversations
+                    </p>
+                    <p className="text-xl text-gray-700">Firebase-Backed</p>
                   </div>
                 </div>
               </motion.div>
@@ -199,18 +179,18 @@ export default function page() {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                 <div>
                   <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
-                    Back to
+                    Next Project
                   </h3>
                   <h4 className="text-3xl md:text-4xl font-medium text-black">
-                    All Projects
+                    CineQST
                   </h4>
                 </div>
                 <Magnetic>
                   <Link
-                    href="/work"
+                    href="/work/cineqst"
                     className="inline-flex items-center text-gray-600 hover:text-black transition-colors"
                   >
-                    <span className="mr-2">View all work</span>
+                    <span className="mr-2">View project</span>
                     <svg
                       className="w-5 h-5"
                       fill="none"

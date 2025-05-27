@@ -3,12 +3,11 @@ import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Magnetic from "@/app/common/Magnetic";
-import RoundedButton from "@/app/common/RoundedButton";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function page() {
+export default function Page() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -20,7 +19,7 @@ export default function page() {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
+      new LocomotiveScroll();
 
       setTimeout(() => {
         document.body.style.cursor = "default";
@@ -63,11 +62,13 @@ export default function page() {
                 Live Site
               </h3>
               <Magnetic>
-                <RoundedButton backgroundColor="#f45232">
-                  <Link href="#" target="_blank" className="block px-6 py-3">
-                    <span className="text-white font-medium">Visit Site</span>
-                  </Link>
-                </RoundedButton>
+                <Link
+                  href="https://notluk.net/"
+                  target="_blank"
+                  className="block px-6 py-3"
+                >
+                  <span className="text-xl font-semibold">notluk.net</span>
+                </Link>
               </Magnetic>
             </div>
           </div>
@@ -84,9 +85,10 @@ export default function page() {
         <div className="max-w-7xl mx-auto">
           <div className="relative w-full h-[60vh] md:h-[70vh] bg-gray-100 rounded-lg overflow-hidden">
             <Image
-              src="/images/notluk/notlukSmall.png"
+              src="/assets/images/notluk/notluk.svg"
               alt="Notluk Project"
-              fill
+              width={2000}
+              height={1000}
               className="object-cover"
             />
           </div>
@@ -113,16 +115,19 @@ export default function page() {
                     About the project
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                    Notluk is a modern note-taking application designed for
-                    productivity and organization. The app provides users with a
-                    clean, intuitive interface for creating, organizing, and
-                    managing their notes efficiently.
+                    Notluk is a simple and elegant note-taking app that
+                    I&apos;ve developed to help users organize their thoughts
+                    and ideas efficiently. The app features a clean, minimalist
+                    design that focuses on the writing experience without
+                    distractions.
                   </p>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    Built with React and Next.js, Notluk offers a seamless
-                    experience with features like real-time editing,
-                    categorization, and search functionality to help users stay
-                    organized and productive.
+                    With a modular structure, Notluk allows users to create
+                    customizable pages, task boards, databases, and more — all
+                    tailored to their personal or professional needs. Whether
+                    you&apos;re working solo or collaborating with a team,
+                    Notluk provides a streamlined experience to boost
+                    productivity and creativity.
                   </p>
                 </div>
               </motion.div>
@@ -139,12 +144,34 @@ export default function page() {
                     Technologies
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-xl text-gray-700">React & Next.js</p>
-                    <p className="text-xl text-gray-700">TypeScript</p>
-                    <p className="text-xl text-gray-700">TailwindCSS</p>
-                    <p className="text-xl text-gray-700">Prisma</p>
-                    <p className="text-xl text-gray-700">PostgreSQL</p>
-                    <p className="text-xl text-gray-700">Vercel</p>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">React & Next.js</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">TypeScript</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">TailwindCSS</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">
+                        React Hook Form & ZOD
+                      </p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Firebase</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Vercel</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">
+                        Shadcn & Lucide Icons & Lottie
+                      </p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Sonner</p>
+                    </Magnetic>
                   </div>
                 </div>
 
@@ -153,13 +180,13 @@ export default function page() {
                     Features
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-xl text-gray-700">Rich text editing</p>
-                    <p className="text-xl text-gray-700">Note categorization</p>
-                    <p className="text-xl text-gray-700">
-                      Search functionality
-                    </p>
-                    <p className="text-xl text-gray-700">Real-time sync</p>
-                    <p className="text-xl text-gray-700">Responsive design</p>
+                    <p className="text-xl text-gray-700">Custom Pages</p>
+                    <p className="text-xl text-gray-700">Task Management</p>
+                    <p className="text-xl text-gray-700">Nested Blocks</p>
+                    <p className="text-xl text-gray-700">Templates</p>
+                    <p className="text-xl text-gray-700">Global Search</p>
+                    <p className="text-xl text-gray-700">Dark Mode</p>
+                    <p className="text-xl text-gray-700">Global Search</p>
                   </div>
                 </div>
               </motion.div>

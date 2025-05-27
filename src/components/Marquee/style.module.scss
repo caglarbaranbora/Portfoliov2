@@ -1,0 +1,110 @@
+.skills {
+  background: white;
+  text-align: center;
+  padding: 60px 0;
+  width: 100%;
+  opacity: 0.6;
+  .marquee {
+    overflow: hidden;
+    width: 100%;
+    user-select: none;
+    --gap: 70px;
+    display: flex;
+    gap: var(--gap);
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(to right, white, transparent);
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(to left, white, transparent);
+    }
+    .marquee_content {
+      list-style: none;
+      flex-shrink: 0;
+      min-width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--gap);
+      animation: scroll 50s linear infinite;
+    }
+    &:hover .marquee_content {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .skills {
+    padding: 40px 16px;
+
+    h1 {
+      font-size: 24px;
+      line-height: 28px;
+
+      span {
+        font-size: 24px;
+        line-height: 28px;
+      }
+    }
+
+    .marquee {
+      margin-top: 4px;
+      --gap: 10px;
+
+      .marquee-content {
+        animation: scroll 20s linear infinite;
+      }
+    }
+  }
+}
+
+@media (max-width: 475px) {
+  .skills {
+    padding: 40px 16px;
+
+    h1 {
+      font-size: 24px;
+      line-height: 28px;
+
+      span {
+        font-size: 24px;
+        line-height: 28px;
+      }
+    }
+
+    .marquee {
+      margin-top: 4px;
+      --gap: 10px;
+
+      .marquee-content {
+        animation: scroll 20s linear infinite;
+      }
+    }
+  }
+}

@@ -7,13 +7,11 @@ import { opacity, slideUp } from "./anim";
 
 interface PageTransitionProps {
   pageName: string;
-  isInitialLoad?: boolean;
   onComplete?: () => void;
 }
 
 export default function PageTransition({
   pageName,
-  isInitialLoad = false,
   onComplete,
 }: PageTransitionProps) {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });

@@ -10,6 +10,7 @@
   font-weight: 300;
   box-sizing: border-box;
   align-items: center;
+  font-size: 20px;
 
   .logo {
     display: flex;
@@ -30,10 +31,12 @@
         position: relative;
         transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
         &:nth-of-type(2) {
+          padding-left: 0.3em;
+        }
+        &:nth-of-type(3) {
           position: absolute;
-          left: 100%;
-          opacity: 0;
-          transform: translateX(20px);
+          left: 145px;
+          padding-left: 0.3em;
         }
       }
     }
@@ -42,14 +45,15 @@
         transform: rotate(360deg);
       }
       .name {
-        p {
-          &:nth-of-type(1) {
-            transform: translateX(-100%);
-          }
-          &:nth-of-type(2) {
-            opacity: 1;
-            transform: translateX(0);
-          }
+        padding-right: 30px;
+        .caglar {
+          transform: translateX(-100%);
+        }
+        .baran {
+          transform: translateX(-87%);
+        }
+        .bora {
+          transform: translateX(-80px);
         }
       }
     }
@@ -87,7 +91,7 @@
   transform: scale(0);
   position: fixed;
   right: 0px;
-  z-index: 4;
+  z-index: 9998;
 
   .button {
     position: relative;

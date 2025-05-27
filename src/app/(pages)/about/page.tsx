@@ -1,88 +1,43 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Magnetic from "@/app/common/Magnetic";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Marquee from "@/components/Marquee";
+import Service from "@/components/Service";
+import Image from "next/image";
 
-const skills = [
+const services = [
   {
-    skill: "HTML",
-    image: "/assets/skills/html.svg",
+    title1: "Web",
+    title2: "Developing",
+    src: "/assets/skills/react.svg",
   },
   {
-    skill: "CSS",
-    image: "/assets/skills/css.svg",
+    title1: "Mobile",
+    title2: "Developing",
+    src: "/assets/skills/react-native.svg",
   },
   {
-    skill: "SASS",
-    image: "/assets/skills/sass.svg",
+    title1: "Graphic",
+    title2: "Design",
+    src: "/assets/skills/framer.svg",
   },
   {
-    skill: "TAILWINDCSS",
-    image: "/assets/skills/tailwind.svg",
+    title1: "Backend",
+    title2: "Developing",
+    src: "/assets/skills/node.svg",
   },
   {
-    skill: "JAVASCRIPT",
-    image: "/assets/skills/javascript.svg",
-  },
-  {
-    skill: "TYPESCRIPT",
-    image: "/assets/skills/typescript.svg",
-  },
-  {
-    skill: "REACT",
-    image: "/assets/skills/react.svg",
-  },
-  {
-    skill: "REACT NATIVE",
-    image: "/assets/skills/react-native.svg",
-  },
-  {
-    skill: "NEXT.JS",
-    image: "/assets/skills/next.svg",
-  },
-  {
-    skill: "GIT",
-    image: "/assets/skills/git.svg",
-  },
-  {
-    skill: "FIGMA",
-    image: "/assets/skills/figma.svg",
-  },
-  {
-    skill: "FRAMER MOTION",
-    image: "/assets/skills/framer.svg",
+    title1: "Web",
+    title2: "Hosting",
+    src: "/assets/skills/hosting.svg",
   },
 ];
 
-const faqs = [
-  {
-    question: "What is your creative design process like?",
-    answer:
-      "I start by understanding your brand, goals, and target audience. Then I create wireframes, design mockups, and develop interactive prototypes before moving to development.",
-  },
-  {
-    question: "What is your typical project timeline?",
-    answer:
-      "Project timelines vary based on complexity. A simple website takes 2-4 weeks, while complex web applications can take 6-12 weeks. I always provide detailed timelines upfront.",
-  },
-  {
-    question: "How do I get started on a project with you?",
-    answer:
-      "Simply reach out through the contact form or email. We'll schedule a discovery call to discuss your project needs, timeline, and budget.",
-  },
-  {
-    question: "What should I do if you're fully booked?",
-    answer:
-      "I maintain a waiting list for future projects. Contact me to discuss your timeline and I'll let you know when I have availability.",
-  },
-];
-
-export default function page() {
+export default function Page() {
   const container = useRef(null);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: container,
@@ -94,7 +49,7 @@ export default function page() {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
+      new LocomotiveScroll();
 
       setTimeout(() => {
         document.body.style.cursor = "default";
@@ -103,16 +58,12 @@ export default function page() {
     })();
   }, []);
 
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header textColor="#000" isDark={true} />
 
       {/* Hero Section - Centered Name */}
-      <div className="px-8 md:px-16 lg:px-24 pt-32 pb-16 flex items-center justify-center min-h-[60vh]">
+      <div className="px-8 md:px-16 lg:px-[80px] lg:py-[100px] flex items-center justify-center min-h-[60vh]">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -128,13 +79,12 @@ export default function page() {
         </motion.div>
       </div>
 
-      {/* Content Section with Sliding Reveal - SlidingImages Style */}
       <div
         ref={container}
-        className="relative flex flex-col gap-12 mt-[200px] bg-white z-10"
+        className="relative flex flex-col gap-12 bg-white z-10"
       >
         {/* About Content */}
-        <div className="px-8 md:px-16 lg:px-24 pb-32">
+        <div className="px-8 md:px-16 lg:px-[80px] pb-16">
           <div className="max-w-7xl mx-auto">
             {/* About Section */}
             <motion.div
@@ -143,8 +93,8 @@ export default function page() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mb-24"
             >
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl md:text-3xl font-medium text-black">
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-[30px] md:text-3xl font-semibold text-black">
                   about.
                 </h2>
                 <Magnetic>
@@ -159,98 +109,59 @@ export default function page() {
                 </Magnetic>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
-                <div className="space-y-6">
-                  <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    I collaborate with businesses of all sizes worldwide, using
-                    the latest technologies. My designs have also earned
-                    multiple awards.
-                  </p>
+              {/* Text Content - Full Width */}
+              <div className="text-start max-w-[70%] mb-16">
+                <p className="text-[40px] font-medium text-black leading-relaxed tracking-1.1em">
+                  <span className="m-10"></span>My passion for front-end
+                  development, combined with a strong foundation in software
+                  engineering and real project experience, allows me to deliver
+                  responsive, user-friendly, and scalable web applications.
+                </p>
+              </div>
+
+              {/* Images Section */}
+              <div className="flex relative gap-10">
+                <div className=" bg-gray-100 overflow-hidden max-w-[60%]">
+                  <div className="text-center">
+                    <Image
+                      src={"/assets/images/caglar1.png"}
+                      alt="caglar baran bora"
+                      width={6000}
+                      height={3000}
+                    />
+                  </div>
                 </div>
-                <div className="space-y-6">
-                  <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    I'm dedicated to crafting beautiful and highly functional
-                    designs that seamlessly align with my clients' unique needs
-                    and long-term goals.
-                  </p>
-                </div>
+                <p className="font-semibold text-lg text-black leading-relaxed items-center justify-center">
+                  I&apos;m not just a developer — I&apos;m a hardworking,
+                  people-oriented problem solver who thrives on teamwork and
+                  continuous improvement. Whether it&apos;s contributing to a
+                  fintech project, creating a real-time chat app, or helping
+                  others grow, I approach every challenge with dedication and a
+                  smile. My goal is always to craft elegant solutions that make
+                  a real impact.
+                </p>
               </div>
             </motion.div>
 
+            {/* Services Section */}
+            <div className="h-[100vh] flex items-center justify-center cursor-hover">
+              <div className="w-[100%]">
+                <p className="text-[30px] font-semibold ">services.</p>
+
+                {services.map((service, index) => {
+                  return <Service key={index} project={service} />;
+                })}
+              </div>
+            </div>
             {/* Skills Marquee Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mb-24"
-            >
-              <h3 className="text-2xl md:text-3xl font-medium text-black mb-8">
-                skills.
-              </h3>
-
-              {/* Marquee Container */}
-              <div className="overflow-hidden">
-                <motion.div
-                  className="flex gap-8 whitespace-nowrap"
-                  animate={{ x: [0, -1000] }}
-                  transition={{
-                    x: {
-                      repeat: Infinity,
-                      repeatType: "loop",
-                      duration: 20,
-                      ease: "linear",
-                    },
-                  }}
-                >
-                  {/* First set */}
-                  {skills.map((skill, index) => (
-                    <div key={index} className="flex items-center gap-8">
-                      <div className="w-8 h-8 flex-shrink-0">
-                        <img
-                          src={skill.image}
-                          alt={skill.skill}
-                          className="w-full h-full object-contain"
-                          onError={(e) => {
-                            console.log(`Error loading image: ${skill.image}`);
-                          }}
-                        />
-                      </div>
-                      <span className="text-xl md:text-2xl font-medium text-gray-700 uppercase tracking-wider">
-                        {skill.skill}
-                      </span>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full" />
-                    </div>
-                  ))}
-                  {/* Duplicate for seamless loop */}
-                  {skills.map((skill, index) => (
-                    <div
-                      key={`duplicate-${index}`}
-                      className="flex items-center gap-8"
-                    >
-                      <div className="w-8 h-8 flex-shrink-0">
-                        <img
-                          src={skill.image}
-                          alt={skill.skill}
-                          className="w-full h-full object-contain"
-                          onError={(e) => {
-                            console.log(`Error loading image: ${skill.image}`);
-                          }}
-                        />
-                      </div>
-                      <span className="text-xl md:text-2xl font-medium text-gray-700 uppercase tracking-wider">
-                        {skill.skill}
-                      </span>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full" />
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-            </motion.div>
+            <div className="mb-24">
+              <Marquee />
+            </div>
           </div>
         </div>
 
         {/* FAQs Section */}
-        <div className="px-8 md:px-16 lg:px-24 pb-32">
+        {/* <div className="px-8 md:px-16 lg:px-[80px] lg:py-[100px] pb-32">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -312,7 +223,7 @@ export default function page() {
               </div>
             </motion.div>
           </div>
-        </div>
+        </div> */}
 
         {/* Sliding Reveal Circle Container */}
         <motion.div

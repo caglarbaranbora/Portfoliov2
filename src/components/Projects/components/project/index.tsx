@@ -11,7 +11,7 @@ interface ProjectProps {
   manageModal: (active: boolean, index: number, x: number, y: number) => void;
 }
 
-export default function index({
+export default function Project({
   index,
   title,
   manageModal,

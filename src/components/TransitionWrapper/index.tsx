@@ -91,7 +91,6 @@ export default function TransitionWrapper({
           <PageTransition
             key={`transition-${transitionKey}`}
             pageName={currentRoute}
-            isInitialLoad={false}
             onComplete={handlePageTransitionComplete}
           />
         )}

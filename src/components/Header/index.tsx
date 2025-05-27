@@ -9,25 +9,27 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Rounded from "@/app/common/RoundedButton";
 import Magnetic from "@/app/common/Magnetic";
 import Link from "next/link";
-import Image from "next/image";
 
 interface HeaderProps {
   textColor?: string;
   isDark?: boolean;
 }
 
-export default function index({
-  textColor = "#fff",
-  isDark = false,
-}: HeaderProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Header({ textColor = "#fff" }: HeaderProps) {
   const [isActive, setIsActive] = useState(false);
   const header = useRef(null);
   const pathname = usePathname();
   const button = useRef(null);
+  const isActiveRef = useRef(isActive);
 
   useEffect(() => {
-    if (isActive) setIsActive(false);
+    isActiveRef.current = isActive;
+  }, [isActive]);
+
+  useEffect(() => {
+    if (isActiveRef.current) {
+      setIsActive(false);
+    }
   }, [pathname]);
 
   useLayoutEffect(() => {
@@ -36,7 +38,7 @@ export default function index({
       scrollTrigger: {
         trigger: document.documentElement,
         start: 0,
-        end: window.innerHeight,
+        end: 250,
         onLeave: () => {
           gsap.to(button.current, {
             scale: 1,
@@ -45,11 +47,12 @@ export default function index({
           });
         },
         onEnterBack: () => {
-          gsap.to(
-            button.current,
-            { scale: 0, duration: 0.25, ease: "power1.out" },
-            setIsActive(false)
-          );
+          gsap.to(button.current, {
+            scale: 0,
+            duration: 0.25,
+            ease: "power1.out",
+          });
+          setIsActive(false);
         },
       },
     });
@@ -63,87 +66,51 @@ export default function index({
           style={{ color: textColor }}
         >
           <p className={styles.copyright}>©</p>
-          <p>Caglar Bora</p>
+          <div className={styles.name}>
+            <p className={styles.caglar}>Hello</p>
+            <p className={styles.baran}>I&apos;m Caglar</p>
+            <p className={styles.bora}>Bora</p>
+          </div>
         </div>
         <div className={`cursor-hover ${styles.nav}`}>
-          {isOpen ? (
-            <>
-              <div className="flex" style={{ color: textColor }}>
-                <Magnetic>
-                  <div className={styles.el}>
-                    <Link href={"/work"} className="font-medium">
-                      Work
-                    </Link>
-                    <div
-                      className={styles.indicator}
-                      style={{ backgroundColor: textColor }}
-                    ></div>
-                  </div>
-                </Magnetic>
-                <Magnetic>
-                  <div className={styles.el}>
-                    <Link href={"/about"} className="font-medium">
-                      About
-                    </Link>
-                    <div
-                      className={styles.indicator}
-                      style={{ backgroundColor: textColor }}
-                    ></div>
-                  </div>
-                </Magnetic>
-                <Magnetic>
-                  <div className={styles.el}>
-                    <Link href={"/contact"} className="font-medium">
-                      Contact
-                    </Link>
-                    <div
-                      className={styles.indicator}
-                      style={{ backgroundColor: textColor }}
-                    ></div>
-                  </div>
-                </Magnetic>
+          <div className="flex" style={{ color: textColor }}>
+            <Magnetic>
+              <div className={styles.el}>
+                <Link href={"/work"} className="font-medium">
+                  Work
+                </Link>
+                <div
+                  className={styles.indicator}
+                  style={{ backgroundColor: textColor }}
+                ></div>
               </div>
-              {isDark ? (
-                <Image
-                  src={"/assets/menu-icon-x-black.svg"}
-                  width={75}
-                  height={75}
-                  alt="menu-close-icon"
-                  onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
-                  className={`${styles.menuIcon} ${styles.close} cursor-hover`}
-                />
-              ) : (
-                <Image
-                  src={"/assets/menu-icon-x.svg"}
-                  width={75}
-                  height={75}
-                  alt="menu-close-icon"
-                  onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
-                  className={`${styles.menuIcon} ${styles.close} cursor-hover`}
-                />
-              )}
-            </>
-          ) : isDark ? (
-            <Image
-              src={"/assets/menu-icon-black.svg"}
-              width={75}
-              height={75}
-              alt="menu-close-icon"
-              onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
-              className={`${styles.menuIcon} ${styles.close} cursor-hover`}
-            />
-          ) : (
-            <Image
-              src={"/assets/menu-icon.svg"}
-              width={75}
-              height={75}
-              alt="menu-close-icon"
-              onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
-              className={`${styles.menuIcon} ${styles.close} cursor-hover`}
-            />
-          )}
+            </Magnetic>
+            <Magnetic>
+              <div className={styles.el}>
+                <Link href={"/about"} className="font-medium">
+                  About
+                </Link>
+                <div
+                  className={styles.indicator}
+                  style={{ backgroundColor: textColor }}
+                ></div>
+              </div>
+            </Magnetic>
+            <Magnetic>
+              <div className={styles.el}>
+                <Link href={"/contact"} className="font-medium">
+                  Contact
+                </Link>
+                <div
+                  className={styles.indicator}
+                  style={{ backgroundColor: textColor }}
+                ></div>
+              </div>
+            </Magnetic>
+          </div>
         </div>
       </div>
+      {/* hamburger menu */}
       <div ref={button} className={styles.headerButtonContainer}>
         <Rounded
           onClick={() => {

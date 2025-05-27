@@ -3,12 +3,11 @@ import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Magnetic from "@/app/common/Magnetic";
-import RoundedButton from "@/app/common/RoundedButton";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function page() {
+export default function Page() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -20,7 +19,7 @@ export default function page() {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
+      new LocomotiveScroll();
 
       setTimeout(() => {
         document.body.style.cursor = "default";
@@ -42,7 +41,7 @@ export default function page() {
           className="max-w-7xl mx-auto"
         >
           <h1 className="text-[80px] md:text-[120px] lg:text-[160px] font-medium leading-none text-black mb-8">
-            TAMAM APP
+            TAMAM!
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -50,25 +49,13 @@ export default function page() {
               <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
                 Year
               </h3>
-              <p className="text-xl text-gray-700">2023</p>
+              <p className="text-xl text-gray-700">2024</p>
             </div>
             <div>
               <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
                 Role
               </h3>
               <p className="text-xl text-gray-700">Development</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
-                Live Site
-              </h3>
-              <Magnetic>
-                <RoundedButton backgroundColor="#f45232">
-                  <Link href="#" target="_blank" className="block px-6 py-3">
-                    <span className="text-white font-medium">Visit Site</span>
-                  </Link>
-                </RoundedButton>
-              </Magnetic>
             </div>
           </div>
         </motion.div>
@@ -84,9 +71,10 @@ export default function page() {
         <div className="max-w-7xl mx-auto">
           <div className="relative w-full h-[60vh] md:h-[70vh] bg-gray-100 rounded-lg overflow-hidden">
             <Image
-              src="/images/tamam/tamam.png"
-              alt="Tamam App Project"
-              fill
+              src="/assets/images/tamam/tamamLarge.png"
+              alt="Tamam Project"
+              width={2000}
+              height={1000}
               className="object-cover"
             />
           </div>
@@ -113,15 +101,18 @@ export default function page() {
                     About the project
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                    Tamam App is a comprehensive productivity application built
-                    with React Native. The app helps users manage their daily
-                    tasks, set goals, and track their progress with an intuitive
-                    and user-friendly interface.
+                    Tamam! is a collaborative task management platform inspired
+                    by Notion&apos;s flexibility, but purpose-built for team
+                    productivity. It enables both individual task tracking and
+                    team-based project coordination, making it ideal for
+                    workspaces of any size.
                   </p>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    Designed with modern UI principles and smooth animations,
-                    Tamam App provides a seamless experience across both iOS and
-                    Android platforms.
+                    Users can create tasks for themselves or assign them to
+                    teams and even to people outside the team when needed.
+                    Whether you&apos;re managing a shared project or just
+                    keeping track of your own to-dos, Tamam! brings clarity and
+                    collaboration into one place.
                   </p>
                 </div>
               </motion.div>
@@ -138,12 +129,31 @@ export default function page() {
                     Technologies
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-xl text-gray-700">React Native</p>
-                    <p className="text-xl text-gray-700">TypeScript</p>
-                    <p className="text-xl text-gray-700">Expo</p>
-                    <p className="text-xl text-gray-700">AsyncStorage</p>
-                    <p className="text-xl text-gray-700">React Navigation</p>
-                    <p className="text-xl text-gray-700">Styled Components</p>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">React & Next.js</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">TypeScript</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">TailwindCSS</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">
+                        React Hook Form & Yup
+                      </p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Firebase</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Framer Motion</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">
+                        React Icons & Lottie
+                      </p>
+                    </Magnetic>
                   </div>
                 </div>
 
@@ -152,13 +162,19 @@ export default function page() {
                     Features
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-xl text-gray-700">Task management</p>
-                    <p className="text-xl text-gray-700">Goal tracking</p>
-                    <p className="text-xl text-gray-700">Progress analytics</p>
-                    <p className="text-xl text-gray-700">Offline support</p>
                     <p className="text-xl text-gray-700">
-                      Cross-platform compatibility
+                      Personal Task Management
                     </p>
+                    <p className="text-xl text-gray-700">Team Workspaces</p>
+                    <p className="text-xl text-gray-700">Task Assignment</p>
+                    <p className="text-xl text-gray-700">
+                      Task Completion Tracking
+                    </p>
+                    <p className="text-xl text-gray-700">Organized Boards</p>
+                    <p className="text-xl text-gray-700">
+                      Notifications & Updates
+                    </p>
+                    <p className="text-xl text-gray-700">Dark Mode Support</p>
                   </div>
                 </div>
               </motion.div>
@@ -177,12 +193,12 @@ export default function page() {
                     Next Project
                   </h3>
                   <h4 className="text-3xl md:text-4xl font-medium text-black">
-                    @Chat
+                    CineQST
                   </h4>
                 </div>
                 <Magnetic>
                   <Link
-                    href="/work/chat"
+                    href="/work/cineqst"
                     className="inline-flex items-center text-gray-600 hover:text-black transition-colors"
                   >
                     <span className="mr-2">View project</span>

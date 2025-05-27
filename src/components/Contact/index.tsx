@@ -2,12 +2,12 @@ import styles from "./style.module.scss";
 import Image from "next/image";
 import Rounded from "@/app/common/RoundedButton";
 import { useRef } from "react";
-import { useScroll, motion, useTransform, useSpring } from "framer-motion";
+import { useScroll, motion, useTransform } from "framer-motion";
 import Magnetic from "@/app/common/Magnetic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function index() {
+export default function Contact() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -18,7 +18,11 @@ export default function index() {
   const rotate = useTransform(scrollYProgress, [0, 1], [120, 90]);
 
   const date = new Date();
-  const showTime = date.getHours() + ":" + date.getMinutes() + " GMT+3";
+  const showTime =
+    date.getHours().toString().padStart(2, "0") +
+    ":" +
+    date.getMinutes().toString().padStart(2, "0") +
+    " GMT+3";
   const router = useRouter();
 
   return (
@@ -30,7 +34,7 @@ export default function index() {
               <Image
                 fill={true}
                 alt={"image"}
-                src={`/images/test.png`}
+                src={`/assets/images/test.png`}
                 className="cursor-hover"
               />
             </div>

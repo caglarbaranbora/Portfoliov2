@@ -68,8 +68,8 @@ export default function Home() {
       <Image src="/images/test.png" fill={true} alt="background" />
       <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider}>
-          <p ref={firstText}>Front-End Developer -</p>
-          <p ref={secondText}>Front-End Developer -</p>
+          <p ref={firstText}>Caglar Baran Bora ─</p>
+          <p ref={secondText}>Caglar Baran Bora ─</p>
         </div>
       </div>
       <div data-scroll data-scroll-speed={0.05} className={styles.description}>
@@ -85,8 +85,10 @@ export default function Home() {
             fill="white"
           />
         </svg>
-        <p className="cursor-hover">Software Engineer</p>
-        <p className="cursor-hover">Front-End Developer - Freelance</p>
+        <p className="cursor-hover font-medium">Software Engineer</p>
+        <p className="cursor-hover font-medium">
+          Front-End Developer - Freelance
+        </p>
       </div>
     </motion.main>
   );

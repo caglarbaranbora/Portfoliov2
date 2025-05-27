@@ -5,8 +5,6 @@ import Project from "./components/project";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import Image from "next/image";
-import Button from "../ui/Button";
-import { useRouter } from "next/navigation";
 import Magnetic from "@/app/common/Magnetic";
 import Link from "next/link";
 
@@ -64,12 +62,12 @@ export default function Home() {
   const cursor = useRef(null);
   const cursorLabel = useRef(null);
 
-  let xMoveContainer = useRef(null);
-  let yMoveContainer = useRef(null);
-  let xMoveCursor = useRef(null);
-  let yMoveCursor = useRef(null);
-  let xMoveCursorLabel = useRef(null);
-  let yMoveCursorLabel = useRef(null);
+  const xMoveContainer = useRef<((value: number) => void) | null>(null);
+  const yMoveContainer = useRef<((value: number) => void) | null>(null);
+  const xMoveCursor = useRef<((value: number) => void) | null>(null);
+  const yMoveCursor = useRef<((value: number) => void) | null>(null);
+  const xMoveCursorLabel = useRef<((value: number) => void) | null>(null);
+  const yMoveCursorLabel = useRef<((value: number) => void) | null>(null);
 
   useEffect(() => {
     //Move Container
@@ -101,15 +99,20 @@ export default function Home() {
     });
   }, []);
 
-  const moveItems = (x, y) => {
-    xMoveContainer.current(x);
-    yMoveContainer.current(y);
-    xMoveCursor.current(x);
-    yMoveCursor.current(y);
-    xMoveCursorLabel.current(x);
-    yMoveCursorLabel.current(y);
+  const moveItems = (x: number, y: number) => {
+    xMoveContainer.current?.(x);
+    yMoveContainer.current?.(y);
+    xMoveCursor.current?.(x);
+    yMoveCursor.current?.(y);
+    xMoveCursorLabel.current?.(x);
+    yMoveCursorLabel.current?.(y);
   };
-  const manageModal = (active, index, x, y) => {
+  const manageModal = (
+    active: boolean,
+    index: number,
+    x: number,
+    y: number
+  ) => {
     moveItems(x, y);
     setModal({ active, index });
   };
@@ -167,7 +170,7 @@ export default function Home() {
                   key={`modal_${index}`}
                 >
                   <Image
-                    src={`/images/${src}`}
+                    src={`/assets/images/${src}`}
                     width={300}
                     height={0}
                     alt="image"

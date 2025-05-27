@@ -4,14 +4,20 @@ import styles from "./style.module.scss";
 import gsap from "gsap";
 import Magnetic from "../Magnetic";
 
-export default function index({
+interface RoundedButtonProps {
+  children: React.ReactNode;
+  backgroundColor?: string;
+  [key: string]: unknown;
+}
+
+export default function RoundedButton({
   children,
   backgroundColor = "#f45232",
   ...attributes
-}) {
+}: RoundedButtonProps) {
   const circle = useRef(null);
-  let timeline = useRef(null);
-  let timeoutId = null;
+  const timeline = useRef<gsap.core.Timeline | null>(null);
+  let timeoutId: NodeJS.Timeout | null = null;
   useEffect(() => {
     timeline.current = gsap.timeline({ paused: true });
     timeline.current
@@ -29,12 +35,12 @@ export default function index({
 
   const manageMouseEnter = () => {
     if (timeoutId) clearTimeout(timeoutId);
-    timeline.current.tweenFromTo("enter", "exit");
+    timeline.current?.tweenFromTo("enter", "exit");
   };
 
   const manageMouseLeave = () => {
     timeoutId = setTimeout(() => {
-      timeline.current.play();
+      timeline.current?.play();
     }, 300);
   };
 

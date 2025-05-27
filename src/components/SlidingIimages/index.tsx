@@ -33,7 +33,7 @@ const slider2 = [
   },
   {
     color: "#d7d4cf",
-    src: "/image.png",
+    src: "cineQst/cineqst.png",
   },
   {
     color: "#e1dad6",
@@ -41,7 +41,7 @@ const slider2 = [
   },
 ];
 
-export default function index() {
+export default function SlidingImages() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -66,7 +66,7 @@ export default function index() {
                 <Image
                   fill={true}
                   alt={"image"}
-                  src={`/images/${project.src}`}
+                  src={`/assets/images/${project.src}`}
                 />
               </div>
             </div>
@@ -85,7 +85,7 @@ export default function index() {
                 <Image
                   fill={true}
                   alt={"image"}
-                  src={`/images/${project.src}`}
+                  src={`/assets/images/${project.src}`}
                 />
               </div>
             </div>

@@ -3,12 +3,11 @@ import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import Magnetic from "@/app/common/Magnetic";
-import RoundedButton from "@/app/common/RoundedButton";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function page() {
+export default function Page() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -20,7 +19,7 @@ export default function page() {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
+      new LocomotiveScroll();
 
       setTimeout(() => {
         document.body.style.cursor = "default";
@@ -50,25 +49,13 @@ export default function page() {
               <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
                 Year
               </h3>
-              <p className="text-xl text-gray-700">2024</p>
+              <p className="text-xl text-gray-700">2023</p>
             </div>
             <div>
               <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
                 Role
               </h3>
               <p className="text-xl text-gray-700">Design & Development</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
-                Live Site
-              </h3>
-              <Magnetic>
-                <RoundedButton backgroundColor="#f45232">
-                  <Link href="#" target="_blank" className="block px-6 py-3">
-                    <span className="text-white font-medium">Visit Site</span>
-                  </Link>
-                </RoundedButton>
-              </Magnetic>
             </div>
           </div>
         </motion.div>
@@ -84,9 +71,10 @@ export default function page() {
         <div className="max-w-7xl mx-auto">
           <div className="relative w-full h-[60vh] md:h-[70vh] bg-gray-100 rounded-lg overflow-hidden">
             <Image
-              src="/images/cineQst/cineqst.png"
+              src="/assets/images/cineQst/cineqst.png"
               alt="CineQST Project"
-              fill
+              width={2000}
+              height={1000}
               className="object-cover"
             />
           </div>
@@ -113,16 +101,16 @@ export default function page() {
                     About the project
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                    CineQST is a comprehensive movie discovery platform that
-                    helps users find their next favorite film. The application
-                    features an intuitive interface for browsing, searching, and
-                    discovering movies based on various criteria.
+                    CineQST is a minimalist and user-friendly mobile app
+                    designed to help users discover, choose, and save movies
+                    they love.
                   </p>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    With advanced filtering options, personalized
-                    recommendations, and detailed movie information, CineQST
-                    provides a complete cinematic experience for movie
-                    enthusiasts.
+                    Whether you&apos;re indecisive about what to watch or simply
+                    want to keep a list of your favorite films, CineQST is your
+                    go-to movie companion. The app focuses on simplicity, with
+                    no ads, no tracking, and no payments — just a clean space to
+                    explore and manage your movie preferences.
                   </p>
                 </div>
               </motion.div>
@@ -139,12 +127,28 @@ export default function page() {
                     Technologies
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-xl text-gray-700">React & Next.js</p>
-                    <p className="text-xl text-gray-700">TypeScript</p>
-                    <p className="text-xl text-gray-700">TailwindCSS</p>
-                    <p className="text-xl text-gray-700">TMDB API</p>
-                    <p className="text-xl text-gray-700">Framer Motion</p>
-                    <p className="text-xl text-gray-700">Vercel</p>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">
+                        React & React-Native Expo
+                      </p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">TypeScript</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Nativewind</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Axios</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">Appwrite</p>
+                    </Magnetic>
+                    <Magnetic>
+                      <p className="text-xl text-gray-700">
+                        Gesture Handler & Reanimated & Vector Icons
+                      </p>
+                    </Magnetic>
                   </div>
                 </div>
 
@@ -153,17 +157,16 @@ export default function page() {
                     Features
                   </h3>
                   <div className="space-y-3">
+                    <p className="text-xl text-gray-700">Movie Discovery</p>
+                    <p className="text-xl text-gray-700">Favorites List</p>
                     <p className="text-xl text-gray-700">
-                      Movie search & discovery
+                      Search Functionality
                     </p>
-                    <p className="text-xl text-gray-700">Advanced filtering</p>
-                    <p className="text-xl text-gray-700">
-                      Personalized recommendations
-                    </p>
-                    <p className="text-xl text-gray-700">
-                      Detailed movie information
-                    </p>
-                    <p className="text-xl text-gray-700">Responsive design</p>
+                    <p className="text-xl text-gray-700">Categories & Genres</p>
+                    <p className="text-xl text-gray-700">Trailers & Details</p>
+                    <p className="text-xl text-gray-700">Dark Mode</p>
+                    <p className="text-xl text-gray-700">No Ads, No Tracking</p>
+                    <p className="text-xl text-gray-700">Rate Movies</p>
                   </div>
                 </div>
               </motion.div>
@@ -182,12 +185,12 @@ export default function page() {
                     Next Project
                   </h3>
                   <h4 className="text-3xl md:text-4xl font-medium text-black">
-                    Tamam App
+                    CineQST
                   </h4>
                 </div>
                 <Magnetic>
                   <Link
-                    href="/work/tamam"
+                    href="/work/cineqst"
                     className="inline-flex items-center text-gray-600 hover:text-black transition-colors"
                   >
                     <span className="mr-2">View project</span>

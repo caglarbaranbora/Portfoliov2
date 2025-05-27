@@ -5,7 +5,7 @@ interface MagneticProps {
   children: React.ReactElement;
 }
 
-export default function index({ children }: MagneticProps) {
+export default function Magnetic({ children }: MagneticProps) {
   const magnetic = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function index({ children }: MagneticProps) {
       yTo(y * 0.35);
     };
 
-    const handleMouseLeave = (e: MouseEvent) => {
+    const handleMouseLeave = () => {
       xTo(0);
       yTo(0);
     };
@@ -48,7 +48,10 @@ export default function index({ children }: MagneticProps) {
     };
   }, []);
 
-  return React.cloneElement(children as React.ReactElement<any>, {
-    ref: magnetic,
-  });
+  return React.cloneElement(
+    children as React.ReactElement<Record<string, unknown>>,
+    {
+      ref: magnetic,
+    }
+  );
 }

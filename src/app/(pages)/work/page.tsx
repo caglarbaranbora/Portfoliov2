@@ -6,7 +6,6 @@ import Magnetic from "@/app/common/Magnetic";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import RoundedButton from "@/app/common/RoundedButton";
 import gsap from "gsap";
 
 const projects = [
@@ -18,7 +17,7 @@ const projects = [
     category: "Development",
     location: "Turkey",
     services: "Design & Development",
-    image: "/images/notluk/notlukSmall.png",
+    image: "/assets/images/notluk/notlukSmall.png",
   },
   {
     title: "CineQST",
@@ -28,7 +27,7 @@ const projects = [
     category: "Development",
     location: "Turkey",
     services: "Design & Development",
-    image: "/images/cineQst/cineqst.png",
+    image: "/assets/images/cineQst/cineqst.png",
   },
   {
     title: "Tamam App",
@@ -38,7 +37,7 @@ const projects = [
     category: "Development",
     location: "Turkey",
     services: "Development",
-    image: "/images/tamam/tamam.png",
+    image: "/assets/images/tamam/tamam.png",
   },
   {
     title: "@Chat",
@@ -48,37 +47,26 @@ const projects = [
     category: "Development",
     location: "Turkey",
     services: "Design & Development",
-    image: "/images/chat/1.png",
-  },
-  {
-    title: "Portfolio Design",
-    description: "Design",
-    year: "2024",
-    href: "#",
-    category: "Design",
-    location: "Turkey",
-    services: "Design",
-    image: "/images/portfolioSmall.png",
+    image: "/assets/images/chat/1.png",
   },
 ];
 
-export default function page() {
+export default function Page() {
   const container = useRef(null);
   const [viewMode, setViewMode] = useState("list"); // "list" or "grid"
   const [filter, setFilter] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState(projects);
   const [modal, setModal] = useState({ active: false, index: 0 });
-  const { active, index } = modal;
   const modalContainer = useRef(null);
   const cursor = useRef(null);
   const cursorLabel = useRef(null);
 
-  let xMoveContainer = useRef(null);
-  let yMoveContainer = useRef(null);
-  let xMoveCursor = useRef(null);
-  let yMoveCursor = useRef(null);
-  let xMoveCursorLabel = useRef(null);
-  let yMoveCursorLabel = useRef(null);
+  const xMoveContainer = useRef<((value: number) => void) | null>(null);
+  const yMoveContainer = useRef<((value: number) => void) | null>(null);
+  const xMoveCursor = useRef<((value: number) => void) | null>(null);
+  const yMoveCursor = useRef<((value: number) => void) | null>(null);
+  const xMoveCursorLabel = useRef<((value: number) => void) | null>(null);
+  const yMoveCursorLabel = useRef<((value: number) => void) | null>(null);
 
   useEffect(() => {
     //Move Container
@@ -133,15 +121,20 @@ export default function page() {
     },
   };
 
-  const moveItems = (x, y) => {
-    xMoveContainer.current(x);
-    yMoveContainer.current(y);
-    xMoveCursor.current(x);
-    yMoveCursor.current(y);
-    xMoveCursorLabel.current(x);
-    yMoveCursorLabel.current(y);
+  const moveItems = (x: number, y: number) => {
+    xMoveContainer.current?.(x);
+    yMoveContainer.current?.(y);
+    xMoveCursor.current?.(x);
+    yMoveCursor.current?.(y);
+    xMoveCursorLabel.current?.(x);
+    yMoveCursorLabel.current?.(y);
   };
-  const manageModal = (active, index, x, y) => {
+  const manageModal = (
+    active: boolean,
+    index: number,
+    x: number,
+    y: number
+  ) => {
     moveItems(x, y);
     setModal({ active, index });
   };
@@ -149,7 +142,7 @@ export default function page() {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
+      new LocomotiveScroll();
 
       setTimeout(() => {
         document.body.style.cursor = "default";
@@ -183,14 +176,14 @@ export default function page() {
       <Header textColor="#000" isDark={true} />
 
       {/* Hero Section */}
-      <div className="px-8 md:px-16 lg:px-24 pt-32 pb-16">
+      <div className="px-8 md:px-16 lg:px-24 pt-32">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-7xl mx-auto"
         >
-          <h1 className="text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black mb-8">
+          <h1 className="text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black ">
             WORK
           </h1>
         </motion.div>
@@ -375,6 +368,15 @@ export default function page() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 * index + 0.5 }}
                     className="group"
+                    onMouseEnter={(e) => {
+                      // Grid view'da sadece cursor'u göster, modal'ı gösterme
+                      setModal({ active: true, index: index });
+                      moveItems(e.clientX, e.clientY);
+                    }}
+                    onMouseLeave={(e) => {
+                      setModal({ active: false, index: index });
+                      moveItems(e.clientX, e.clientY);
+                    }}
                   >
                     <Magnetic>
                       <Link href={project.href} className="block">
@@ -387,17 +389,6 @@ export default function page() {
                               fill
                               className="object-cover"
                             />
-
-                            {/* Hover View Button */}
-                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <RoundedButton backgroundColor="#f45232">
-                                <div className="px-4 py-2">
-                                  <span className="text-white font-medium text-sm">
-                                    View
-                                  </span>
-                                </div>
-                              </RoundedButton>
-                            </div>
                           </div>
 
                           {/* Project Info */}
@@ -479,9 +470,10 @@ export default function page() {
       {/* Contact Component - Behind the reveal animation */}
       <Contact />
 
-      {/* Modal for List View */}
+      {/* Modal and Cursor */}
       {viewMode === "list" && (
         <>
+          {/* Modal - sadece list view'da göster */}
           <motion.div
             ref={modalContainer}
             variants={scaleAnimation}
@@ -509,26 +501,27 @@ export default function page() {
               ))}
             </div>
           </motion.div>
-
-          <motion.div
-            ref={cursor}
-            className="w-20 h-20 rounded-full bg-[#f45232] text-white fixed z-30 flex items-center justify-center text-sm font-light pointer-events-none"
-            variants={scaleAnimation}
-            initial="initial"
-            animate={modal.active ? "enter" : "closed"}
-          >
-            View
-          </motion.div>
-
-          <motion.div
-            ref={cursorLabel}
-            className="w-20 h-20 rounded-full bg-transparent text-white fixed z-30 flex items-center justify-center text-sm font-light pointer-events-none"
-            variants={scaleAnimation}
-            initial="initial"
-            animate={modal.active ? "enter" : "closed"}
-          />
         </>
       )}
+
+      {/* View Cursor - her iki view'da da göster */}
+      <motion.div
+        ref={cursor}
+        className="w-20 h-20 rounded-full bg-[#f45232] text-white fixed z-30 flex items-center justify-center text-sm font-light pointer-events-none"
+        variants={scaleAnimation}
+        initial="initial"
+        animate={modal.active ? "enter" : "closed"}
+      >
+        View
+      </motion.div>
+
+      <motion.div
+        ref={cursorLabel}
+        className="w-20 h-20 rounded-full bg-transparent text-white fixed z-30 flex items-center justify-center text-sm font-light pointer-events-none"
+        variants={scaleAnimation}
+        initial="initial"
+        animate={modal.active ? "enter" : "closed"}
+      />
     </div>
   );
 }
