@@ -22,8 +22,8 @@ export default function RootLayout({
         <RouteProvider>
           <TransitionWrapper>
             <CustomCursor />
-            <SpeedInsights />
             {children}
+            <SpeedInsights />
           </TransitionWrapper>
         </RouteProvider>
       </body>
