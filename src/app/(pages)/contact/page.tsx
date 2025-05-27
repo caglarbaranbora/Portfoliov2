@@ -257,7 +257,7 @@ export default function ContactPage() {
                   width={150}
                   height={150}
                   alt={"image"}
-                  src={`/assets/images/background.png`}
+                  src={`/assets/images/background.webp`}
                   className="w-full h-full object-cover"
                   priority={true}
                   sizes=""

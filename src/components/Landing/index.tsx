@@ -66,7 +66,7 @@ export default function Home() {
       className={styles.landing}
     >
       <Image
-        src="/assets/images/background.png"
+        src="/assets/images/background.webp"
         fill={true}
         alt="background"
         priority={true}
