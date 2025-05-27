@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import CustomCursor from "@/components/CustomCursor";
 import TransitionWrapper from "@/components/TransitionWrapper";
 import { RouteProvider } from "@/contexts/RouteContext";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -22,6 +22,7 @@ export default function RootLayout({
         <RouteProvider>
           <TransitionWrapper>
             <CustomCursor />
+            <SpeedInsights />
             {children}
           </TransitionWrapper>
         </RouteProvider>
