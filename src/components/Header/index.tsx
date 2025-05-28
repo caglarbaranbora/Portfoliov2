@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Rounded from "@/app/common/RoundedButton";
 import Magnetic from "@/app/common/Magnetic";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
   textColor?: string;
@@ -21,6 +22,7 @@ export default function Header({ textColor = "#fff" }: HeaderProps) {
   const pathname = usePathname();
   const button = useRef(null);
   const isActiveRef = useRef(isActive);
+  const router = useRouter();
 
   useEffect(() => {
     isActiveRef.current = isActive;
@@ -66,7 +68,7 @@ export default function Header({ textColor = "#fff" }: HeaderProps) {
           style={{ color: textColor }}
         >
           <p className={styles.copyright}>©</p>
-          <div className={styles.name}>
+          <div className={styles.name} onClick={() => router.push("/")}>
             <p className={styles.caglar}>Hello</p>
             <p className={styles.baran}>I&apos;m Caglar</p>
             <p className={styles.bora}>Bora</p>

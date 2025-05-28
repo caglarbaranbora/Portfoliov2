@@ -143,7 +143,7 @@ export default function ContactPage() {
               className="max-w-7xl mx-auto"
             >
               <div className="mb-16 space-y-4">
-                <h1 className="text-[80px] md:text-[120px] lg:text-[140px] font-light leading-none">
+                <h1 className="text-[50px] sm:text-[80px] md:text-[120px] lg:text-[140px] font-light leading-none">
                   Let&apos;s start a project together
                 </h1>
               </div>
@@ -153,22 +153,25 @@ export default function ContactPage() {
           {/* Main Content */}
           <div className="px-8 md:px-16 lg:px-24 pb-32">
             <div className="max-w-7xl mx-auto">
-              <div className="flex gap-16 lg:gap-32 justify-between">
+              <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 justify-between">
                 {/* Left Column - Form */}
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="flex-1"
+                  className="flex-1 lg:max-w-2xl"
                 >
-                  <form onSubmit={handleSubmit} className="space-y-12 ">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="space-y-8 sm:space-y-12"
+                  >
                     {/* Question 01 */}
                     <div className="space-y-4">
                       <div className="flex items-center gap-4">
-                        <span className="text-lg font-medium opacity-60">
+                        <span className="text-base sm:text-lg font-medium opacity-60">
                           01
                         </span>
-                        <label className="text-2xl font-medium">
+                        <label className="text-lg sm:text-xl md:text-2xl font-medium">
                           What&apos;s your name?
                         </label>
                       </div>
@@ -179,7 +182,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full bg-transparent border-b border-gray-600 pb-4 text-xl text-white placeholder-gray-400 focus:border-white focus:outline-none transition-colors"
+                        className="w-full bg-transparent border-b border-gray-600 pb-4 text-lg sm:text-xl text-white placeholder-gray-400 focus:border-white focus:outline-none transition-colors"
                         placeholder="John Doe *"
                         style={{
                           WebkitBoxShadow: "0 0 0 1000px transparent inset",
@@ -191,10 +194,10 @@ export default function ContactPage() {
                     {/* Question 02 */}
                     <div className="space-y-4">
                       <div className="flex items-center gap-4">
-                        <span className="text-lg font-medium opacity-60">
+                        <span className="text-base sm:text-lg font-medium opacity-60">
                           02
                         </span>
-                        <label className="text-2xl font-medium">
+                        <label className="text-lg sm:text-xl md:text-2xl font-medium">
                           What&apos;s your email?
                         </label>
                       </div>
@@ -205,7 +208,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full bg-transparent border-b border-gray-600 pb-4 text-xl text-white placeholder-gray-400 focus:border-white focus:outline-none transition-colors"
+                        className="w-full bg-transparent border-b border-gray-600 pb-4 text-lg sm:text-xl text-white placeholder-gray-400 focus:border-white focus:outline-none transition-colors"
                         placeholder="john@doe.com *"
                         style={{
                           WebkitBoxShadow: "0 0 0 1000px transparent inset",
@@ -217,10 +220,10 @@ export default function ContactPage() {
                     {/* Question 03 */}
                     <div className="space-y-4">
                       <div className="flex items-center gap-4">
-                        <span className="text-lg font-medium opacity-60">
+                        <span className="text-base sm:text-lg font-medium opacity-60">
                           03
                         </span>
-                        <label className="text-2xl font-medium">
+                        <label className="text-lg sm:text-xl md:text-2xl font-medium">
                           What services are you looking for?
                         </label>
                       </div>
@@ -230,7 +233,7 @@ export default function ContactPage() {
                         name="services"
                         value={formData.services}
                         onChange={handleChange}
-                        className="w-full bg-transparent border-b border-gray-600 pb-4 text-xl text-white placeholder-gray-400 focus:border-white focus:outline-none transition-colors"
+                        className="w-full bg-transparent border-b border-gray-600 pb-4 text-lg sm:text-xl text-white placeholder-gray-400 focus:border-white focus:outline-none transition-colors"
                         placeholder="Web Design, Web Development..."
                         style={{
                           WebkitBoxShadow: "0 0 0 1000px transparent inset",
@@ -242,10 +245,10 @@ export default function ContactPage() {
                     {/* Question 04 */}
                     <div className="space-y-4">
                       <div className="flex items-center gap-4">
-                        <span className="text-lg font-medium opacity-60">
+                        <span className="text-base sm:text-lg font-medium opacity-60">
                           04
                         </span>
-                        <label className="text-2xl font-medium">
+                        <label className="text-lg sm:text-xl md:text-2xl font-medium">
                           Your message
                         </label>
                       </div>
@@ -255,7 +258,7 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleChange}
                         rows={4}
-                        className="w-full bg-transparent border-b border-gray-600 pb-4 text-xl text-white placeholder-gray-400 focus:border-white focus:outline-none transition-colors resize-none"
+                        className="w-full bg-transparent border-b border-gray-600 pb-4 text-lg sm:text-xl text-white placeholder-gray-400 focus:border-white focus:outline-none transition-colors resize-none"
                         placeholder="Hello Caglar, can you help me with..."
                         style={{
                           WebkitBoxShadow: "0 0 0 1000px transparent inset",
@@ -268,7 +271,7 @@ export default function ContactPage() {
                       <Magnetic>
                         <button
                           type="submit"
-                          className="px-12 py-6 text-white font-medium hover:opacity-90 transition-opacity rounded-full bg-[#f45232]"
+                          className="px-8 sm:px-12 py-4 sm:py-6 text-white font-medium hover:opacity-90 transition-opacity rounded-full bg-[#f45232] text-sm sm:text-base"
                         >
                           Send Message
                         </button>
@@ -282,9 +285,9 @@ export default function ContactPage() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="space-y-16"
+                  className="space-y-12 lg:space-y-16 lg:min-w-[300px]"
                 >
-                  <div className="w-[150px] h-[150px] rounded-full overflow-hidden">
+                  <div className="w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] rounded-full overflow-hidden mx-auto lg:mx-0">
                     <Image
                       width={150}
                       height={150}
@@ -297,14 +300,14 @@ export default function ContactPage() {
                   </div>
                   {/* Contact Details */}
                   <div>
-                    <h3 className="text-lg font-medium mb-8 uppercase tracking-wider opacity-60">
+                    <h3 className="text-base sm:text-lg font-medium mb-6 sm:mb-8 uppercase tracking-wider opacity-60">
                       Contact Details
                     </h3>
                     <div className="space-y-4">
                       <Magnetic>
                         <Link
                           href="mailto:boracaglarbaran@gmail.com"
-                          className="block text-xl hover:opacity-80 transition-opacity"
+                          className="block text-lg sm:text-xl hover:opacity-80 transition-opacity break-all"
                         >
                           boracaglarbaran@gmail.com
                         </Link>
@@ -312,7 +315,7 @@ export default function ContactPage() {
                       <Magnetic>
                         <Link
                           href="tel:+905522321279"
-                          className="block text-xl hover:opacity-80 transition-opacity"
+                          className="block text-lg sm:text-xl hover:opacity-80 transition-opacity"
                         >
                           +90 552 232 1279
                         </Link>
@@ -322,10 +325,10 @@ export default function ContactPage() {
 
                   {/* Business Details */}
                   <div>
-                    <h3 className="text-lg font-medium mb-8 uppercase tracking-wider opacity-60">
+                    <h3 className="text-base sm:text-lg font-medium mb-6 sm:mb-8 uppercase tracking-wider opacity-60">
                       Business Details
                     </h3>
-                    <div className="space-y-4 text-xl">
+                    <div className="space-y-4 text-lg sm:text-xl">
                       <p>Caglar Bora</p>
                       <p>Location: Turkey</p>
                       <p>Freelance Developer</p>
@@ -334,7 +337,7 @@ export default function ContactPage() {
 
                   {/* Socials */}
                   <div>
-                    <h3 className="text-lg font-medium mb-8 uppercase tracking-wider opacity-60">
+                    <h3 className="text-base sm:text-lg font-medium mb-6 sm:mb-8 uppercase tracking-wider opacity-60">
                       Socials
                     </h3>
                     <div className="space-y-4">
@@ -342,7 +345,7 @@ export default function ContactPage() {
                         <Link
                           href="https://www.instagram.com/caglarbaranbora/"
                           target="_blank"
-                          className="block text-xl hover:opacity-80 transition-opacity"
+                          className="block text-lg sm:text-xl hover:opacity-80 transition-opacity"
                         >
                           Instagram
                         </Link>
@@ -351,7 +354,7 @@ export default function ContactPage() {
                         <Link
                           href="https://x.com/caglarbaranbora"
                           target="_blank"
-                          className="block text-xl hover:opacity-80 transition-opacity"
+                          className="block text-lg sm:text-xl hover:opacity-80 transition-opacity"
                         >
                           Twitter
                         </Link>
@@ -360,7 +363,7 @@ export default function ContactPage() {
                         <Link
                           href="https://www.linkedin.com/in/caglarbaranbora/"
                           target="_blank"
-                          className="block text-xl hover:opacity-80 transition-opacity"
+                          className="block text-lg sm:text-xl hover:opacity-80 transition-opacity"
                         >
                           LinkedIn
                         </Link>
@@ -369,7 +372,7 @@ export default function ContactPage() {
                         <Link
                           href="https://github.com/caglarbaranbora"
                           target="_blank"
-                          className="block text-xl hover:opacity-80 transition-opacity"
+                          className="block text-lg sm:text-xl hover:opacity-80 transition-opacity"
                         >
                           GitHub
                         </Link>
@@ -384,28 +387,28 @@ export default function ContactPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="mt-32 pt-16 border-t border-gray-700"
+                className="mt-24 sm:mt-32 pt-12 sm:pt-16 border-t border-gray-700"
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                   <div>
-                    <h3 className="text-lg font-medium mb-4 uppercase tracking-wider opacity-60">
+                    <h3 className="text-base sm:text-lg font-medium mb-4 uppercase tracking-wider opacity-60">
                       Version
                     </h3>
-                    <p className="text-xl">2025 © Edition</p>
+                    <p className="text-lg sm:text-xl">2025 © Edition</p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-medium mb-4 uppercase tracking-wider opacity-60">
+                    <h3 className="text-base sm:text-lg font-medium mb-4 uppercase tracking-wider opacity-60">
                       Local Time
                     </h3>
-                    <p className="text-xl">{currentTime}</p>
+                    <p className="text-lg sm:text-xl">{currentTime}</p>
                   </div>
 
-                  <div>
-                    <h3 className="text-lg font-medium mb-4 uppercase tracking-wider opacity-60">
+                  <div className="sm:col-span-2 md:col-span-1">
+                    <h3 className="text-base sm:text-lg font-medium mb-4 uppercase tracking-wider opacity-60">
                       Location
                     </h3>
-                    <p className="text-xl">Turkey</p>
+                    <p className="text-lg sm:text-xl">Turkey, Istanbul</p>
                   </div>
                 </div>
               </motion.div>

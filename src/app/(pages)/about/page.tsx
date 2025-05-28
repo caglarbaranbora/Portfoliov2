@@ -91,10 +91,10 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center"
             >
-              <h1 className="text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black">
+              <h1 className="text-[80px] sm:text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black">
                 CAGLAR
               </h1>
-              <h1 className="text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black">
+              <h1 className="text-[80px] sm:text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black">
                 BORA
               </h1>
             </motion.div>
@@ -114,8 +114,8 @@ export default function Page() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="mb-24"
                 >
-                  <div className="flex items-center justify-between mb-12">
-                    <h2 className="text-[30px] md:text-3xl font-semibold text-black">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-12 gap-4">
+                    <h2 className="text-[24px] sm:text-[30px] md:text-3xl font-semibold text-black">
                       about.
                     </h2>
                     <Magnetic>
@@ -123,52 +123,57 @@ export default function Page() {
                         href="/Caglar Baran Bora Resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider"
+                        className="px-4 sm:px-6 py-2 sm:py-3 border border-black text-black hover:bg-black hover:text-white transition-colors duration-300 text-xs sm:text-sm uppercase tracking-wider"
                       >
                         Read.cv
                       </a>
                     </Magnetic>
                   </div>
 
-                  {/* Text Content - Full Width */}
-                  <div className="text-start max-w-[70%] mb-16">
-                    <p className="text-[40px] font-medium text-black leading-relaxed tracking-1.1em">
-                      <span className="m-10"></span>My passion for front-end
-                      development, combined with a strong foundation in software
-                      engineering and real project experience, allows me to
-                      deliver responsive, user-friendly, and scalable web
-                      applications.
+                  {/* Text Content - Responsive Width */}
+                  <div className="text-start w-full lg:max-w-[70%] mb-12 sm:mb-16">
+                    <p className="text-[20px] sm:text-[28px] md:text-[35px] lg:text-[40px] font-medium text-black leading-relaxed tracking-1.1em">
+                      <span className="hidden sm:inline m-10"></span>My passion
+                      for front-end development, combined with a strong
+                      foundation in software engineering and real project
+                      experience, allows me to deliver responsive,
+                      user-friendly, and scalable web applications.
                     </p>
                   </div>
 
-                  {/* Images Section */}
-                  <div className="flex relative gap-10">
-                    <div className=" bg-gray-100 overflow-hidden max-w-[60%]">
+                  {/* Images Section - Responsive Layout */}
+                  <div className="flex flex-col lg:flex-row relative gap-6 lg:gap-10">
+                    <div className="bg-gray-100 overflow-hidden w-full lg:max-w-[60%]">
                       <div className="text-center">
                         <Image
                           src={"/assets/images/caglar1.png"}
                           alt="caglar baran bora"
                           width={6000}
                           height={3000}
+                          className="w-full h-auto"
                         />
                       </div>
                     </div>
-                    <p className="font-semibold text-lg text-black leading-relaxed items-center justify-center">
-                      I&apos;m not just a developer — I&apos;m a hardworking,
-                      people-oriented problem solver who thrives on teamwork and
-                      continuous improvement. Whether it&apos;s contributing to
-                      a fintech project, creating a real-time chat app, or
-                      helping others grow, I approach every challenge with
-                      dedication and a smile. My goal is always to craft elegant
-                      solutions that make a real impact.
-                    </p>
+                    <div className="flex-1">
+                      <p className="font-semibold text-base sm:text-lg text-black leading-relaxed">
+                        I&apos;m not just a developer — I&apos;m a hardworking,
+                        people-oriented problem solver who thrives on teamwork
+                        and continuous improvement. Whether it&apos;s
+                        contributing to a fintech project, creating a real-time
+                        chat app, or helping others grow, I approach every
+                        challenge with dedication and a smile. My goal is always
+                        to craft elegant solutions that make a real impact.
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
 
                 {/* Services Section */}
-                <div className="h-[100vh] flex items-center justify-center cursor-hover">
+                <div className="min-h-[50vh] lg:h-[100vh] flex items-center justify-center cursor-hover">
                   <div className="w-[100%]">
-                    <p className="text-[30px] font-semibold ">services.</p>
+                    <p className="text-[24px] sm:text-[30px] font-semibold mb-8">
+                      services.
+                    </p>
 
                     {services.map((service, index) => {
                       return <Service key={index} project={service} />;

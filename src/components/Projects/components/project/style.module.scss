@@ -7,16 +7,67 @@
   border-top: 1px solid rgb(201, 201, 201);
   transition: all 0.2s;
 
+  // Tablet için
+  @media (max-width: 1024px) {
+    padding: 40px 80px 40px 80px;
+  }
+
+  // Mobil için
+  @media (max-width: 768px) {
+    padding: 30px 40px 30px 40px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 20px 25px 20px;
+    gap: 8px;
+  }
+
   h2 {
     font-size: 60px;
     margin: 0px;
     font-weight: 400;
     transition: all 0.4s;
+
+    // Tablet için
+    @media (max-width: 1024px) {
+      font-size: 50px;
+    }
+
+    // Mobil için
+    @media (max-width: 768px) {
+      font-size: 36px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 28px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 24px;
+    }
   }
 
   p {
     transition: all 0.4s;
     font-weight: 300;
+    font-size: 16px;
+
+    // Tablet için
+    @media (max-width: 1024px) {
+      font-size: 15px;
+    }
+
+    // Mobil için
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 13px;
+    }
   }
 
   &:last-of-type {
@@ -28,10 +79,27 @@
 
     h2 {
       transform: translateX(-10px);
+
+      // Mobil için hover efektini azalt
+      @media (max-width: 768px) {
+        transform: translateX(-5px);
+      }
     }
 
     p {
       transform: translateX(10px);
+
+      // Mobil için hover efektini azalt
+      @media (max-width: 768px) {
+        transform: translateX(5px);
+      }
+    }
+  }
+
+  // Mobil cihazlarda touch feedback
+  @media (max-width: 768px) {
+    &:active {
+      background-color: rgba(0, 0, 0, 0.05);
     }
   }
 }

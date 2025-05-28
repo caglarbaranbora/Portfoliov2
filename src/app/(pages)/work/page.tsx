@@ -188,7 +188,7 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="max-w-7xl mx-auto"
             >
-              <h1 className="text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black ">
+              <h1 className="text-[80px] sm:text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black">
                 WORK
               </h1>
             </motion.div>
@@ -197,18 +197,18 @@ export default function Page() {
           {/* Projects Section */}
           <div
             ref={container}
-            className="relative flex flex-col gap-12 mt-[200px] bg-white z-10"
+            className="relative flex flex-col gap-12 mt-[100px] md:mt-[200px] bg-white z-10"
           >
             <div className="px-8 md:px-16 lg:px-24 pb-32">
               <div className="max-w-7xl mx-auto">
                 {/* Projects List */}
                 <div className="w-full">
-                  {/* Table Headers */}
+                  {/* Table Headers - Sadece desktop'ta göster */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="grid grid-cols-12 gap-4 px-8 md:px-12 py-6 border-b border-gray-200 text-sm font-medium text-gray-500 uppercase tracking-wider"
+                    className="hidden lg:grid grid-cols-12 gap-4 px-8 md:px-12 py-6 border-b border-gray-200 text-sm font-medium text-gray-500 uppercase tracking-wider"
                   >
                     <div className="col-span-6 md:col-span-5">Project</div>
                     <div className="col-span-3 md:col-span-4">Service</div>
@@ -233,7 +233,8 @@ export default function Page() {
                         }}
                         onClick={() => router.push(project.href)}
                       >
-                        <div className="grid grid-cols-12 gap-4 px-8 md:px-12 py-8 md:py-12 items-center">
+                        {/* Desktop Layout */}
+                        <div className="hidden lg:grid grid-cols-12 gap-4 px-8 md:px-12 py-8 md:py-12 items-center">
                           {/* Project Name */}
                           <div className="col-span-6 md:col-span-5">
                             <h3 className="text-2xl md:text-4xl font-medium text-black group-hover:text-gray-600 transition-colors duration-300">
@@ -272,6 +273,36 @@ export default function Page() {
                             </svg>
                           </div>
                         </div>
+
+                        {/* Mobile & Tablet Layout */}
+                        <div className="lg:hidden px-6 py-8 space-y-4">
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <h3 className="text-xl sm:text-2xl md:text-3xl font-medium text-black group-hover:text-gray-600 transition-colors duration-300 mb-2">
+                                {project.title}
+                              </h3>
+                              <p className="text-base sm:text-lg text-gray-600 font-light mb-1">
+                                {project.services}
+                              </p>
+                              <p className="text-sm sm:text-base text-gray-500 font-light">
+                                {project.year}
+                              </p>
+                            </div>
+                            <svg
+                              className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 flex-shrink-0 ml-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M7 17L17 7M17 7H7M17 7V17"
+                              />
+                            </svg>
+                          </div>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
@@ -282,7 +313,7 @@ export default function Page() {
             {/* Sliding Reveal Circle Container */}
             <motion.div
               style={{ height }}
-              className="relative mt-[100px] bg-red-500"
+              className="relative mt-[50px] md:mt-[100px] bg-red-500"
             >
               <motion.div
                 className="h-[1550%] w-[120%] left-[-10%] absolute bg-white z-10"
@@ -297,13 +328,13 @@ export default function Page() {
           {/* Contact Component */}
           <Contact />
 
-          {/* Modal */}
+          {/* Modal - Sadece desktop'ta göster */}
           <motion.div
             ref={modalContainer}
             variants={scaleAnimation}
             initial="initial"
             animate={modal.active ? "enter" : "closed"}
-            className="h-[350px] w-[400px] fixed top-1/2 left-1/2 bg-white pointer-events-none overflow-hidden z-30"
+            className="hidden lg:block h-[350px] w-[400px] fixed top-1/2 left-1/2 bg-white pointer-events-none overflow-hidden z-30"
           >
             <div
               className="h-full w-full relative transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
@@ -327,10 +358,10 @@ export default function Page() {
             </div>
           </motion.div>
 
-          {/* Cursor */}
+          {/* Cursor - Sadece desktop'ta göster */}
           <motion.div
             ref={cursor}
-            className="w-20 h-20 rounded-full bg-[#f45232] text-white fixed z-30 flex items-center justify-center text-sm font-light pointer-events-none"
+            className="hidden lg:flex w-20 h-20 rounded-full bg-[#f45232] text-white fixed z-30 items-center justify-center text-sm font-light pointer-events-none"
             variants={scaleAnimation}
             initial="initial"
             animate={modal.active ? "enter" : "closed"}
@@ -340,7 +371,7 @@ export default function Page() {
 
           <motion.div
             ref={cursorLabel}
-            className="w-20 h-20 rounded-full bg-transparent text-white fixed z-30 flex items-center justify-center text-sm font-light pointer-events-none"
+            className="hidden lg:flex w-20 h-20 rounded-full bg-transparent text-white fixed z-30 items-center justify-center text-sm font-light pointer-events-none"
             variants={scaleAnimation}
             initial="initial"
             animate={modal.active ? "enter" : "closed"}

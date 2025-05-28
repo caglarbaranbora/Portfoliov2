@@ -12,6 +12,23 @@
   align-items: center;
   font-size: 20px;
 
+  // Tablet için
+  @media (max-width: 1024px) {
+    padding: 25px;
+    font-size: 18px;
+  }
+
+  // Mobil için
+  @media (max-width: 768px) {
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    font-size: 14px;
+  }
+
   .logo {
     display: flex;
     font-weight: 500;
@@ -37,6 +54,15 @@
           position: absolute;
           left: 145px;
           padding-left: 0.3em;
+
+          // Mobil için pozisyon ayarı
+          @media (max-width: 768px) {
+            left: 120px;
+          }
+
+          @media (max-width: 480px) {
+            left: 100px;
+          }
         }
       }
     }
@@ -46,6 +72,11 @@
       }
       .name {
         padding-right: 30px;
+
+        @media (max-width: 768px) {
+          padding-right: 20px;
+        }
+
         .caglar {
           transform: translateX(-100%);
         }
@@ -54,6 +85,14 @@
         }
         .bora {
           transform: translateX(-80px);
+
+          @media (max-width: 768px) {
+            transform: translateX(-60px);
+          }
+
+          @media (max-width: 480px) {
+            transform: translateX(-50px);
+          }
         }
       }
     }
@@ -61,6 +100,11 @@
   .nav {
     display: flex;
     align-items: center;
+
+    // Mobil ve tablet için gizle
+    @media (max-width: 1024px) {
+      display: none;
+    }
 
     .el {
       display: flex;
@@ -93,6 +137,11 @@
   right: 0px;
   z-index: 9998;
 
+  // Tablet ve mobil için göster
+  @media (max-width: 1024px) {
+    transform: scale(1) !important;
+  }
+
   .button {
     position: relative;
     margin: 20px;
@@ -103,6 +152,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    // Mobil için boyut ayarı
+    @media (max-width: 768px) {
+      width: 70px;
+      height: 70px;
+      margin: 15px;
+    }
+
+    @media (max-width: 480px) {
+      width: 60px;
+      height: 60px;
+      margin: 12px;
+    }
   }
 
   .burger {

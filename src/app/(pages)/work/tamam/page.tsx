@@ -62,22 +62,24 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="max-w-7xl mx-auto"
             >
-              <h1 className="text-[80px] md:text-[120px] lg:text-[160px] font-medium leading-none text-black mb-8">
+              <h1 className="text-[60px] sm:text-[80px] md:text-[120px] lg:text-[160px] font-medium leading-none text-black mb-8">
                 TAMAM!
               </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-16">
                 <div>
-                  <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
                     Year
                   </h3>
-                  <p className="text-xl text-gray-700">2024</p>
+                  <p className="text-lg sm:text-xl text-gray-700">2024</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
                     Role
                   </h3>
-                  <p className="text-xl text-gray-700">Development</p>
+                  <p className="text-lg sm:text-xl text-gray-700">
+                    Development
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -88,16 +90,16 @@ export default function Page() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="px-8 md:px-16 lg:px-24 mb-32"
+            className="px-8 md:px-16 lg:px-24 mb-24 sm:mb-32"
           >
             <div className="max-w-7xl mx-auto">
-              <div className="relative w-full h-[60vh] md:h-[70vh] bg-gray-100 rounded-lg overflow-hidden">
+              <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] bg-gray-100 rounded-lg overflow-hidden">
                 <Image
                   src="/assets/images/tamam/tamamLarge.png"
                   alt="Tamam Project"
                   width={2000}
                   height={1000}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
             </div>
@@ -106,30 +108,30 @@ export default function Page() {
           {/* Project Description with Sliding Reveal */}
           <div
             ref={container}
-            className="relative flex flex-col gap-12 mt-[200px] bg-white z-10"
+            className="relative flex flex-col gap-12 mt-[100px] sm:mt-[150px] md:mt-[200px] bg-white z-10"
           >
             <div className="px-8 md:px-16 lg:px-24 pb-32">
               <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-32">
                   {/* Left Column */}
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="space-y-8"
+                    className="space-y-6 sm:space-y-8"
                   >
                     <div>
-                      <h2 className="text-3xl md:text-4xl font-medium text-black mb-6">
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-black mb-4 sm:mb-6">
                         About the project
                       </h2>
-                      <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                      <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-4 sm:mb-6">
                         Tamam! is a collaborative task management platform
                         inspired by Notion&apos;s flexibility, but purpose-built
                         for team productivity. It enables both individual task
                         tracking and team-based project coordination, making it
                         ideal for workspaces of any size.
                       </p>
-                      <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                      <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
                         Users can create tasks for themselves or assign them to
                         teams and even to people outside the team when needed.
                         Whether you&apos;re managing a shared project or just
@@ -144,37 +146,45 @@ export default function Page() {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
-                    className="space-y-12"
+                    className="space-y-8 sm:space-y-12"
                   >
                     <div>
-                      <h3 className="text-lg font-medium text-black mb-6 uppercase tracking-wider">
+                      <h3 className="text-base sm:text-lg font-medium text-black mb-4 sm:mb-6 uppercase tracking-wider">
                         Technologies
                       </h3>
-                      <div className="space-y-3">
+                      <div className="space-y-2 sm:space-y-3">
                         <Magnetic>
-                          <p className="text-xl text-gray-700">
+                          <p className="text-lg sm:text-xl text-gray-700">
                             React & Next.js
                           </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">TypeScript</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            TypeScript
+                          </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">TailwindCSS</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            TailwindCSS
+                          </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">
+                          <p className="text-lg sm:text-xl text-gray-700">
                             React Hook Form & Yup
                           </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">Firebase</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            Firebase
+                          </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">Framer Motion</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            Framer Motion
+                          </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">
+                          <p className="text-lg sm:text-xl text-gray-700">
                             React Icons & Lottie
                           </p>
                         </Magnetic>
@@ -182,25 +192,29 @@ export default function Page() {
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-medium text-black mb-6 uppercase tracking-wider">
+                      <h3 className="text-base sm:text-lg font-medium text-black mb-4 sm:mb-6 uppercase tracking-wider">
                         Features
                       </h3>
-                      <div className="space-y-3">
-                        <p className="text-xl text-gray-700">
+                      <div className="space-y-2 sm:space-y-3">
+                        <p className="text-lg sm:text-xl text-gray-700">
                           Personal Task Management
                         </p>
-                        <p className="text-xl text-gray-700">Team Workspaces</p>
-                        <p className="text-xl text-gray-700">Task Assignment</p>
-                        <p className="text-xl text-gray-700">
+                        <p className="text-lg sm:text-xl text-gray-700">
+                          Team Workspaces
+                        </p>
+                        <p className="text-lg sm:text-xl text-gray-700">
+                          Task Assignment
+                        </p>
+                        <p className="text-lg sm:text-xl text-gray-700">
                           Task Completion Tracking
                         </p>
-                        <p className="text-xl text-gray-700">
+                        <p className="text-lg sm:text-xl text-gray-700">
                           Organized Boards
                         </p>
-                        <p className="text-xl text-gray-700">
+                        <p className="text-lg sm:text-xl text-gray-700">
                           Notifications & Updates
                         </p>
-                        <p className="text-xl text-gray-700">
+                        <p className="text-lg sm:text-xl text-gray-700">
                           Dark Mode Support
                         </p>
                       </div>
@@ -213,25 +227,25 @@ export default function Page() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.2 }}
-                  className="mt-32 pt-16 border-t border-gray-200"
+                  className="mt-24 sm:mt-32 pt-12 sm:pt-16 border-t border-gray-200"
                 >
-                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8">
                     <div>
-                      <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                      <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
                         Next Project
                       </h3>
-                      <h4 className="text-3xl md:text-4xl font-medium text-black">
+                      <h4 className="text-2xl sm:text-3xl md:text-4xl font-medium text-black">
                         CineQST
                       </h4>
                     </div>
                     <Magnetic>
                       <Link
                         href="/work/cineqst"
-                        className="inline-flex items-center text-gray-600 hover:text-black transition-colors"
+                        className="inline-flex items-center text-gray-600 hover:text-black transition-colors text-sm sm:text-base"
                       >
                         <span className="mr-2">View project</span>
                         <svg
-                          className="w-5 h-5"
+                          className="w-4 h-4 sm:w-5 sm:h-5"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"

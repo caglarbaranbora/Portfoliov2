@@ -5,6 +5,26 @@
   flex-direction: column;
   margin-top: 300px;
 
+  // Tablet için
+  @media (max-width: 1024px) {
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-top: 250px;
+  }
+
+  // Mobil için
+  @media (max-width: 768px) {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 200px;
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 150px;
+  }
+
   .body {
     max-width: 1400px;
     width: 100%;
@@ -13,6 +33,15 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 100px;
+
+    // Mobil için
+    @media (max-width: 768px) {
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 60px;
+    }
   }
 
   .modalContainer {
@@ -25,6 +54,17 @@
     pointer-events: none;
     overflow: hidden;
     z-index: 3;
+
+    // Tablet için
+    @media (max-width: 1024px) {
+      height: 300px;
+      width: 350px;
+    }
+
+    // Mobil için - Modal'ı gizle
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .modalSlider {
@@ -61,6 +101,18 @@
     font-size: 14px;
     font-weight: 300;
     pointer-events: none;
+
+    // Tablet için
+    @media (max-width: 1024px) {
+      width: 70px;
+      height: 70px;
+      font-size: 12px;
+    }
+
+    // Mobil için - Cursor'ları gizle
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .cursorLabel {

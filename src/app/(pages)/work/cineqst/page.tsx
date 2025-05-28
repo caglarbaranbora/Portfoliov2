@@ -62,22 +62,40 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="max-w-7xl mx-auto"
             >
-              <h1 className="text-[80px] md:text-[120px] lg:text-[160px] font-medium leading-none text-black mb-8">
+              <h1 className="text-[60px] sm:text-[80px] md:text-[120px] lg:text-[160px] font-medium leading-none text-black mb-8">
                 CINEQST
               </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-16">
                 <div>
-                  <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
                     Year
                   </h3>
-                  <p className="text-xl text-gray-700">2023</p>
+                  <p className="text-lg sm:text-xl text-gray-700">2024</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
                     Role
                   </h3>
-                  <p className="text-xl text-gray-700">Design & Development</p>
+                  <p className="text-lg sm:text-xl text-gray-700">
+                    Design & Development
+                  </p>
+                </div>
+                <div className="sm:col-span-2 md:col-span-1">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                    Live Site
+                  </h3>
+                  <Magnetic>
+                    <Link
+                      href="https://cineqst.vercel.app/"
+                      target="_blank"
+                      className="block px-4 sm:px-6 py-2 sm:py-3"
+                    >
+                      <span className="text-lg sm:text-xl font-semibold">
+                        cineqst.vercel.app
+                      </span>
+                    </Link>
+                  </Magnetic>
                 </div>
               </div>
             </motion.div>

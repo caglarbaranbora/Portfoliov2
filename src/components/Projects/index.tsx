@@ -124,12 +124,12 @@ export default function Home() {
       }}
       className={styles.projects}
     >
-      <div className="flex justify-between items-center pb-5">
-        <h1 className="font-medium text-[30px]">works.</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-5 gap-4 sm:gap-0">
+        <h1 className="font-medium text-[24px] sm:text-[30px]">works.</h1>
         <Magnetic>
           <Link
             href={"/work"}
-            className="px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider"
+            className="px-4 sm:px-6 py-2 sm:py-3 border border-black text-black hover:bg-black hover:text-white transition-colors duration-300 text-xs sm:text-sm uppercase tracking-wider"
           >
             More Work
           </Link>

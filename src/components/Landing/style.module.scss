@@ -11,6 +11,20 @@
   .sliderContainer {
     position: absolute;
     top: calc(100vh - 350px);
+
+    // Tablet için
+    @media (max-width: 1024px) {
+      top: calc(100vh - 280px);
+    }
+
+    // Mobil için
+    @media (max-width: 768px) {
+      top: calc(100vh - 200px);
+    }
+
+    @media (max-width: 480px) {
+      top: calc(100vh - 150px);
+    }
   }
 
   .slider {
@@ -25,6 +39,28 @@
     font-size: 230px;
     font-weight: 500;
     padding-right: 50px;
+
+    // Tablet için
+    @media (max-width: 1024px) {
+      font-size: 180px;
+      padding-right: 40px;
+    }
+
+    // Mobil için
+    @media (max-width: 768px) {
+      font-size: 120px;
+      padding-right: 30px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 80px;
+      padding-right: 20px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 60px;
+      padding-right: 15px;
+    }
   }
 
   .slider p:nth-of-type(2) {
@@ -40,13 +76,72 @@
     color: white;
     font-size: 24px;
     font-weight: 300;
+
+    // Tablet için
+    @media (max-width: 1024px) {
+      left: 60%;
+      font-size: 20px;
+      top: 30%;
+    }
+
+    // Mobil için
+    @media (max-width: 768px) {
+      left: 50%;
+      top: 25%;
+      font-size: 18px;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      left: 50%;
+      top: 20%;
+      font-size: 16px;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 14px;
+      top: 15%;
+    }
+
     p {
       margin: 0px;
       margin-bottom: 10px;
+
+      @media (max-width: 768px) {
+        margin-bottom: 8px;
+      }
+
+      @media (max-width: 480px) {
+        margin-bottom: 6px;
+      }
     }
+
     svg {
       transform: scale(2);
       margin-bottom: 100px;
+
+      @media (max-width: 1024px) {
+        transform: scale(1.8);
+        margin-bottom: 80px;
+      }
+
+      @media (max-width: 768px) {
+        transform: scale(1.5);
+        margin-bottom: 60px;
+      }
+
+      @media (max-width: 480px) {
+        transform: scale(1.2);
+        margin-bottom: 40px;
+      }
+
+      @media (max-width: 360px) {
+        transform: scale(1);
+        margin-bottom: 30px;
+      }
     }
   }
 }

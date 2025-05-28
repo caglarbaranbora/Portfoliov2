@@ -62,34 +62,38 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="max-w-7xl mx-auto"
             >
-              <h1 className="text-[80px] md:text-[120px] lg:text-[160px] font-medium leading-none text-black mb-8">
+              <h1 className="text-[60px] sm:text-[80px] md:text-[120px] lg:text-[160px] font-medium leading-none text-black mb-8">
                 NOTLUK
               </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-16">
                 <div>
-                  <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
                     Year
                   </h3>
-                  <p className="text-xl text-gray-700">2024</p>
+                  <p className="text-lg sm:text-xl text-gray-700">2024</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
                     Role
                   </h3>
-                  <p className="text-xl text-gray-700">Design & Development</p>
+                  <p className="text-lg sm:text-xl text-gray-700">
+                    Design & Development
+                  </p>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium text-black mb-2 uppercase tracking-wider">
+                <div className="sm:col-span-2 md:col-span-1">
+                  <h3 className="text-base sm:text-lg font-medium text-black mb-2 uppercase tracking-wider">
                     Live Site
                   </h3>
                   <Magnetic>
                     <Link
                       href="https://notluk.net/"
                       target="_blank"
-                      className="block px-6 py-3"
+                      className="block px-4 sm:px-6 py-2 sm:py-3"
                     >
-                      <span className="text-xl font-semibold">notluk.net</span>
+                      <span className="text-lg sm:text-xl font-semibold">
+                        notluk.net
+                      </span>
                     </Link>
                   </Magnetic>
                 </div>
@@ -102,16 +106,16 @@ export default function Page() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="px-8 md:px-16 lg:px-24 mb-32"
+            className="px-8 md:px-16 lg:px-24 mb-24 sm:mb-32"
           >
             <div className="max-w-7xl mx-auto">
-              <div className="relative w-full h-[60vh] md:h-[70vh] bg-gray-100 rounded-lg overflow-hidden">
+              <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] bg-gray-100 rounded-lg overflow-hidden">
                 <Image
                   src="/assets/images/notluk/notluk.svg"
                   alt="Notluk Project"
                   width={2000}
                   height={1000}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
             </div>
@@ -120,30 +124,30 @@ export default function Page() {
           {/* Project Description with Sliding Reveal */}
           <div
             ref={container}
-            className="relative flex flex-col gap-12 mt-[200px] bg-white z-10"
+            className="relative flex flex-col gap-12 mt-[100px] sm:mt-[150px] md:mt-[200px] bg-white z-10"
           >
             <div className="px-8 md:px-16 lg:px-24 pb-32">
               <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-32">
                   {/* Left Column */}
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="space-y-8"
+                    className="space-y-6 sm:space-y-8"
                   >
                     <div>
-                      <h2 className="text-3xl md:text-4xl font-medium text-black mb-6">
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-black mb-4 sm:mb-6">
                         About the project
                       </h2>
-                      <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                      <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-4 sm:mb-6">
                         Notluk is a simple and elegant note-taking app that
                         I&apos;ve developed to help users organize their
                         thoughts and ideas efficiently. The app features a
                         clean, minimalist design that focuses on the writing
                         experience without distractions.
                       </p>
-                      <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                      <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
                         With a modular structure, Notluk allows users to create
                         customizable pages, task boards, databases, and more —
                         all tailored to their personal or professional needs.
@@ -159,42 +163,52 @@ export default function Page() {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
-                    className="space-y-12"
+                    className="space-y-8 sm:space-y-12"
                   >
                     <div>
-                      <h3 className="text-lg font-medium text-black mb-6 uppercase tracking-wider">
+                      <h3 className="text-base sm:text-lg font-medium text-black mb-4 sm:mb-6 uppercase tracking-wider">
                         Technologies
                       </h3>
-                      <div className="space-y-3">
+                      <div className="space-y-2 sm:space-y-3">
                         <Magnetic>
-                          <p className="text-xl text-gray-700">
+                          <p className="text-lg sm:text-xl text-gray-700">
                             React & Next.js
                           </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">TypeScript</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            TypeScript
+                          </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">TailwindCSS</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            TailwindCSS
+                          </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">
+                          <p className="text-lg sm:text-xl text-gray-700">
                             React Hook Form & ZOD
                           </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">Firebase</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            Firebase
+                          </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">Vercel</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            Vercel
+                          </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">
+                          <p className="text-lg sm:text-xl text-gray-700">
                             Shadcn & Lucide Icons & Lottie
                           </p>
                         </Magnetic>
                         <Magnetic>
-                          <p className="text-xl text-gray-700">Sonner</p>
+                          <p className="text-lg sm:text-xl text-gray-700">
+                            Sonner
+                          </p>
                         </Magnetic>
                       </div>
                     </div>

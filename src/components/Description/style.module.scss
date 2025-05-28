@@ -5,32 +5,118 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  // Tablet için
+  @media (max-width: 1024px) {
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-top: 150px;
+  }
+
+  // Mobil için
+  @media (max-width: 768px) {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 100px;
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 80px;
+  }
+
   .body {
     max-width: 1400px;
     display: flex;
     gap: 50px;
     position: relative;
+
+    // Tablet için
+    @media (max-width: 1024px) {
+      gap: 40px;
+    }
+
+    // Mobil için
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    @media (max-width: 480px) {
+      gap: 20px;
+    }
+
     p {
       margin: 0px;
+
       &:nth-of-type(1) {
         font-size: 36px;
         gap: 8px;
         line-height: 1.3;
+
+        // Tablet için
+        @media (max-width: 1024px) {
+          font-size: 32px;
+        }
+
+        // Mobil için
+        @media (max-width: 768px) {
+          font-size: 28px;
+          line-height: 1.4;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 24px;
+          line-height: 1.5;
+        }
+
+        @media (max-width: 360px) {
+          font-size: 20px;
+        }
+
         span {
           margin-right: 3px;
+
+          @media (max-width: 480px) {
+            margin-right: 2px;
+          }
         }
+
         .mask {
           position: relative;
           overflow: hidden;
           display: inline-flex;
         }
       }
+
       &:nth-of-type(2) {
         font-size: 18px;
         width: 80%;
         font-weight: 300;
+
+        // Tablet için
+        @media (max-width: 1024px) {
+          font-size: 17px;
+          width: 85%;
+        }
+
+        // Mobil için
+        @media (max-width: 768px) {
+          font-size: 16px;
+          width: 100%;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 15px;
+        }
+
+        @media (max-width: 360px) {
+          font-size: 14px;
+        }
       }
     }
+
     .button {
       top: 80%;
       left: calc(100% - 200px);
@@ -43,18 +129,70 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      // Tablet için
+      @media (max-width: 1024px) {
+        width: 160px;
+        height: 160px;
+        left: calc(100% - 180px);
+        top: 75%;
+      }
+
+      // Mobil için
+      @media (max-width: 768px) {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 140px;
+        height: 140px;
+        margin-top: 30px;
+        align-self: flex-start;
+      }
+
+      @media (max-width: 480px) {
+        width: 120px;
+        height: 120px;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 360px) {
+        width: 100px;
+        height: 100px;
+      }
+
       p {
         margin: 0px;
         font-size: 16px;
         font-weight: 300;
         position: relative;
         z-index: 1;
+
+        // Mobil için
+        @media (max-width: 480px) {
+          font-size: 14px;
+        }
+
+        @media (max-width: 360px) {
+          font-size: 12px;
+        }
       }
     }
   }
+
   .moreWork {
     padding: 20px;
     border-radius: 40px;
     border: 1px solid grey;
+
+    // Mobil için
+    @media (max-width: 768px) {
+      padding: 15px;
+      border-radius: 30px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 12px;
+      border-radius: 25px;
+    }
   }
 }
