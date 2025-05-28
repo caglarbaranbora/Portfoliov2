@@ -2,9 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
-import Magnetic from "@/app/common/Magnetic";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import Preloader from "@/components/Preloader";

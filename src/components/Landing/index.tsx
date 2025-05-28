@@ -6,7 +6,6 @@ import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { motion } from "framer-motion";
-import { slideUp } from "./animation";
 
 export default function Home() {
   const firstText = useRef(null);
