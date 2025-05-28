@@ -5,15 +5,12 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { opacity, slideUp } from "./anim";
 
-interface PageTransitionProps {
+interface PreloaderProps {
   pageName: string;
   onComplete?: () => void;
 }
 
-export default function PageTransition({
-  pageName,
-  onComplete,
-}: PageTransitionProps) {
+export default function Preloader({ pageName, onComplete }: PreloaderProps) {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -21,10 +18,12 @@ export default function PageTransition({
   }, []);
 
   useEffect(() => {
-    // Sayfa geçişi animasyonu - direkt sayfa adını göster
-    setTimeout(() => {
+    // Sayfa geçişi animasyonu - optimize edilmiş timing
+    const timer = setTimeout(() => {
       onComplete?.();
-    }, 800);
+    }, 1000); // 1 saniye - daha hızlı ve smooth
+
+    return () => clearTimeout(timer);
   }, [onComplete]);
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
@@ -40,11 +39,11 @@ export default function PageTransition({
   const curve = {
     initial: {
       d: initialPath,
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.2 },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.2 },
     },
   };
 
@@ -57,7 +56,12 @@ export default function PageTransition({
     >
       {dimension.width > 0 && (
         <>
-          <motion.p variants={opacity} initial="initial" animate="enter">
+          <motion.p
+            variants={opacity}
+            initial="initial"
+            animate="enter"
+            exit="exit"
+          >
             <span></span>
             {pageName}
           </motion.p>

@@ -6,13 +6,12 @@ import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { motion } from "framer-motion";
-import { useRoute } from "@/contexts/RouteContext";
+import { slideUp } from "./animation";
 
 export default function Home() {
   const firstText = useRef(null);
   const secondText = useRef(null);
   const slider = useRef(null);
-  const { isTransitionComplete } = useRoute();
   let xPercent = 0;
   let direction = -1;
 
@@ -53,7 +52,7 @@ export default function Home() {
       transition: {
         duration: 0.8,
         ease: [0.33, 1, 0.68, 1],
-        delay: isTransitionComplete ? 0.2 : 0,
+        delay: 0.2,
       },
     },
   };
@@ -62,7 +61,7 @@ export default function Home() {
     <motion.main
       variants={pageVariants}
       initial="initial"
-      animate={isTransitionComplete ? "enter" : "initial"}
+      animate={"enter"}
       className={styles.landing}
     >
       <Image

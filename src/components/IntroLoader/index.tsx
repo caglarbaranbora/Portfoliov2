@@ -29,19 +29,21 @@ export default function Index({ onComplete }: IntroLoaderProps) {
   }, []);
 
   useEffect(() => {
-    if (index == words.length - 1) {
-      // Son kelime gösterildikten sonra biraz bekle ve onComplete'i çağır
+    if (index === words.length - 1) {
       setTimeout(() => {
         onComplete?.();
-      }, 1500); // Biraz daha uzun bekle
+      }, 1500);
       return;
     }
-    setTimeout(
+
+    const timer = setTimeout(
       () => {
-        setIndex(index + 1);
+        setIndex((prev) => prev + 1);
       },
-      index == 0 ? 1000 : 150
+      index === 0 ? 1000 : 150
     );
+
+    return () => clearTimeout(timer);
   }, [index, onComplete]);
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
