@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import CustomCursor from "@/components/CustomCursor";
 import { LoaderProvider } from "@/contexts/LoaderContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
+import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -22,6 +22,7 @@ export default function RootLayout({
         <CustomCursor />
         <LoaderProvider>{children}</LoaderProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
