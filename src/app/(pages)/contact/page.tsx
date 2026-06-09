@@ -329,9 +329,10 @@ export default function ContactPage() {
                       Business Details
                     </h3>
                     <div className="space-y-4 text-lg sm:text-xl">
-                      <p>Caglar Bora</p>
-                      <p>Location: Turkey</p>
-                      <p>Freelance Developer</p>
+                      <p>Caglar Baran Bora</p>
+                      <p>Mersin, Turkey</p>
+                      <p>Mobile &amp; Frontend Developer</p>
+                      <p>Co-Founder, Guchly Studio</p>
                     </div>
                   </div>
 
@@ -394,7 +395,9 @@ export default function ContactPage() {
                     <h3 className="text-base sm:text-lg font-medium mb-4 uppercase tracking-wider opacity-60">
                       Version
                     </h3>
-                    <p className="text-lg sm:text-xl">2025 © Edition</p>
+                    <p className="text-lg sm:text-xl">
+                      {new Date().getFullYear()} © Edition
+                    </p>
                   </div>
 
                   <div>
@@ -408,7 +411,7 @@ export default function ContactPage() {
                     <h3 className="text-base sm:text-lg font-medium mb-4 uppercase tracking-wider opacity-60">
                       Location
                     </h3>
-                    <p className="text-lg sm:text-xl">Turkey, Istanbul</p>
+                    <p className="text-lg sm:text-xl">Mersin, Turkey</p>
                   </div>
                 </div>
               </motion.div>

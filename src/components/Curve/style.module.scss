@@ -1,0 +1,41 @@
+.page {
+  position: relative;
+
+  .route {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: clamp(48px, 9vw, 110px);
+    font-weight: 500;
+    z-index: 101;
+    white-space: nowrap;
+    pointer-events: none;
+
+    .dot {
+      display: block;
+      width: 18px;
+      height: 18px;
+      background-color: white;
+      border-radius: 50%;
+      margin-right: 16px;
+    }
+  }
+
+  .svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh + 600px);
+    pointer-events: none;
+    z-index: 100;
+
+    path {
+      fill: #141516;
+    }
+  }
+}

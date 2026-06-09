@@ -80,7 +80,7 @@ export default function Contact() {
           <div>
             <span>
               <h3>Version</h3>
-              <p>Caglar Bora 2025 © </p>
+              <p>Caglar Bora {date.getFullYear()} © </p>
             </span>
             <span>
               <h3>Local Time</h3>

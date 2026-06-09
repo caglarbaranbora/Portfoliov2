@@ -111,13 +111,8 @@ export function LoaderProvider({ children }: { children: ReactNode }) {
       const pageName = getPageName(pathname);
       setCurrentPageName(pageName);
 
-      // Sadece intro loader gösterilmemişse page loader göster
-      const hasShownIntro = localStorage.getItem("hasShownIntro");
-      if (hasShownIntro === "true" && !showIntroLoader) {
-        setShowPageLoader(true);
-        setIsTransitioning(true);
-      }
-
+      // Page transitions are handled by the Curve template (components/Curve),
+      // so the legacy page loader stays disabled. Intro loader is unaffected.
       previousPathRef.current = pathname;
     }
   }, [pathname, hasInitialized, showIntroLoader]);

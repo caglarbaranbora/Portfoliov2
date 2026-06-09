@@ -3,102 +3,86 @@ import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import gsap from "gsap";
 import Preloader from "@/components/Preloader";
 import { AnimatePresence } from "framer-motion";
 import { useLoader } from "@/contexts/LoaderContext";
 import { useRouter } from "next/navigation";
+import type { AppStoreApp } from "@/lib/appStore";
+import { experience, workExperienceIds } from "@/lib/experience";
 
-const projects = [
+const workProjects = experience.filter((e) =>
+  workExperienceIds.includes(e.id)
+);
+
+// Ongoing apps not yet on the App Store. Once published, move them to an App
+// Store id in src/lib/appStore.ts and they become live API-driven rows.
+const ongoingProjects = [
   {
-    title: "Notluk",
-    description: "Design & Development",
+    title: "Diarya",
+    services: "AI Voice Journal · iOS",
+    year: "2026",
+    badge: "Coming Soon",
+  },
+  {
+    title: "Feeleze",
+    services: "Habit Tracker · iOS & iPadOS",
     year: "Ongoing",
-    href: "/work/notluk",
-    category: "Development",
-    location: "Turkey",
-    services: "Design & Development",
-    image: "/assets/images/notluk/notlukSmall.png",
-  },
-  {
-    title: "CineQST",
-    description: "Design & Development",
-    year: "2023",
-    href: "/work/cineqst",
-    category: "Development",
-    location: "Turkey",
-    services: "Design & Development",
-    image: "/assets/images/cineQst/cineqst.png",
-  },
-  {
-    title: "Tamam App",
-    description: "Development",
-    year: "2024",
-    href: "/work/tamam",
-    category: "Development",
-    location: "Turkey",
-    services: "Development",
-    image: "/assets/images/tamam/tamam.png",
-  },
-  {
-    title: "@Chat",
-    description: "Design & Development",
-    year: "2024",
-    href: "/work/chat",
-    category: "Development",
-    location: "Turkey",
-    services: "Design & Development",
-    image: "/assets/images/chat/1.png",
+    badge: "In Development",
   },
 ];
 
+const personalProjects = [
+  {
+    title: "Notluk",
+    services: "Design & Development",
+    year: "Ongoing",
+    href: "/work/notluk",
+  },
+  {
+    title: "CineQST",
+    services: "Design & Development",
+    year: "2023",
+    href: "/work/cineqst",
+  },
+  {
+    title: "Tamam App",
+    services: "Development",
+    year: "2024",
+    href: "/work/tamam",
+  },
+  {
+    title: "@Chat",
+    services: "Design & Development",
+    year: "2024",
+    href: "/work/chat",
+  },
+];
+
+type Row =
+  | { kind: "app"; title: string; services: string; year: string; url: string }
+  | { kind: "project"; title: string; services: string; year: string; href: string }
+  | { kind: "ongoing"; title: string; services: string; year: string; badge: string }
+  | { kind: "job"; title: string; services: string; year: string };
+
 export default function Page() {
   const container = useRef(null);
-  const [modal, setModal] = useState({ active: false, index: 0 });
-  const modalContainer = useRef(null);
-  const cursor = useRef(null);
-  const cursorLabel = useRef(null);
   const router = useRouter();
-
-  const { showPageLoader, currentPageName, completePageLoader } = useLoader();
-
-  const xMoveContainer = useRef<((value: number) => void) | null>(null);
-  const yMoveContainer = useRef<((value: number) => void) | null>(null);
-  const xMoveCursor = useRef<((value: number) => void) | null>(null);
-  const yMoveCursor = useRef<((value: number) => void) | null>(null);
-  const xMoveCursorLabel = useRef<((value: number) => void) | null>(null);
-  const yMoveCursorLabel = useRef<((value: number) => void) | null>(null);
+  const [apps, setApps] = useState<AppStoreApp[]>([]);
 
   useEffect(() => {
-    //Move Container
-    xMoveContainer.current = gsap.quickTo(modalContainer.current, "left", {
-      duration: 0.8,
-      ease: "power3",
-    });
-    yMoveContainer.current = gsap.quickTo(modalContainer.current, "top", {
-      duration: 0.8,
-      ease: "power3",
-    });
-    //Move cursor
-    xMoveCursor.current = gsap.quickTo(cursor.current, "left", {
-      duration: 0.5,
-      ease: "power3",
-    });
-    yMoveCursor.current = gsap.quickTo(cursor.current, "top", {
-      duration: 0.5,
-      ease: "power3",
-    });
-    //Move cursor label
-    xMoveCursorLabel.current = gsap.quickTo(cursorLabel.current, "left", {
-      duration: 0.45,
-      ease: "power3",
-    });
-    yMoveCursorLabel.current = gsap.quickTo(cursorLabel.current, "top", {
-      duration: 0.45,
-      ease: "power3",
-    });
+    let active = true;
+    fetch("/api/apps")
+      .then((res) => res.json())
+      .then((data) => {
+        if (active) setApps(data.apps ?? []);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
   }, []);
+
+  const { showPageLoader, currentPageName, completePageLoader } = useLoader();
 
   const { scrollYProgress } = useScroll({
     target: container,
@@ -107,50 +91,53 @@ export default function Page() {
 
   const height = useTransform(scrollYProgress, [0, 0.9], [50, 0]);
 
-  const scaleAnimation = {
-    initial: { scale: 0, x: "-50%", y: "-50%" },
-    enter: {
-      scale: 1,
-      x: "-50%",
-      y: "-50%",
-      transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] },
-    },
-    closed: {
-      scale: 0,
-      x: "-50%",
-      y: "-50%",
-      transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] },
-    },
-  };
+  // Published apps first, then personal projects — single table.
+  const appRows: Row[] = apps.map((app) => ({
+    kind: "app",
+    title: app.name.split(":")[0].trim(),
+    services: app.genre,
+    year: app.releaseDate
+      ? new Date(app.releaseDate).getFullYear().toString()
+      : "",
+    url: app.url,
+  }));
+  const ongoingRows: Row[] = ongoingProjects.map((p) => ({
+    kind: "ongoing",
+    title: p.title,
+    services: p.services,
+    year: p.year,
+    badge: p.badge,
+  }));
+  const projectRows: Row[] = personalProjects.map((p) => ({
+    kind: "project",
+    title: p.title,
+    services: p.services,
+    year: p.year,
+    href: p.href,
+  }));
+  const jobRows: Row[] = workProjects.map((job) => ({
+    kind: "job",
+    title: job.company,
+    services: job.role,
+    year: job.period,
+  }));
+  const rows: Row[] = [...appRows, ...ongoingRows, ...projectRows, ...jobRows];
 
-  const moveItems = (x: number, y: number) => {
-    xMoveContainer.current?.(x);
-    yMoveContainer.current?.(y);
-    xMoveCursor.current?.(x);
-    yMoveCursor.current?.(y);
-    xMoveCursorLabel.current?.(x);
-    yMoveCursorLabel.current?.(y);
-  };
-
-  const manageModal = (
-    active: boolean,
-    index: number,
-    x: number,
-    y: number
-  ) => {
-    moveItems(x, y);
-    setModal({ active, index });
+  const openRow = (row: Row) => {
+    if (row.kind === "app") {
+      window.open(row.url, "_blank", "noopener,noreferrer");
+    } else if (row.kind === "project") {
+      router.push(row.href);
+    }
   };
 
   useEffect(() => {
-    // Sadece page loader yoksa locomotive scroll'u başlat
     if (!showPageLoader) {
       (async () => {
         const LocomotiveScroll = (await import("locomotive-scroll")).default;
         new LocomotiveScroll();
 
         setTimeout(() => {
-          document.body.style.cursor = "default";
           window.scrollTo(0, 0);
         }, 1000);
       })();
@@ -172,12 +159,7 @@ export default function Page() {
 
       {/* Ana içerik - loader yokken göster */}
       {!showPageLoader && (
-        <div
-          className="flex flex-col min-h-screen bg-white"
-          onMouseMove={(e) => {
-            moveItems(e.clientX, e.clientY);
-          }}
-        >
+        <div className="flex flex-col min-h-screen bg-white">
           <Header textColor="#000" isDark={true} />
 
           {/* Hero Section */}
@@ -189,7 +171,7 @@ export default function Page() {
               className="max-w-7xl mx-auto"
             >
               <h1 className="text-[80px] sm:text-[120px] md:text-[174px] lg:text-[220px] font-medium leading-none text-black">
-                WORK
+                PROJECTS
               </h1>
             </motion.div>
           </div>
@@ -218,59 +200,72 @@ export default function Page() {
 
                   {/* Project Rows */}
                   <div className="divide-y divide-gray-100">
-                    {projects.map((project, index) => (
+                    {rows.map((row, index) => (
                       <motion.div
-                        key={index}
+                        key={`${row.kind}-${index}`}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 * index + 0.5 }}
-                        className="group cursor-pointer transition-all duration-300 hover:bg-gray-50"
-                        onMouseEnter={(e) => {
-                          manageModal(true, index, e.clientX, e.clientY);
-                        }}
-                        onMouseLeave={(e) => {
-                          manageModal(false, index, e.clientX, e.clientY);
-                        }}
-                        onClick={() => router.push(project.href)}
+                        className={`group transition-all duration-300 ${
+                          row.kind === "app" || row.kind === "project"
+                            ? "cursor-pointer hover:bg-gray-50"
+                            : "cursor-default"
+                        }`}
+                        onClick={
+                          row.kind === "app" || row.kind === "project"
+                            ? () => openRow(row)
+                            : undefined
+                        }
                       >
                         {/* Desktop Layout */}
                         <div className="hidden lg:grid grid-cols-12 gap-4 px-8 md:px-12 py-8 md:py-12 items-center">
                           {/* Project Name */}
-                          <div className="col-span-6 md:col-span-5">
+                          <div className="col-span-6 md:col-span-5 flex items-center gap-3">
                             <h3 className="text-2xl md:text-4xl font-medium text-black group-hover:text-gray-600 transition-colors duration-300">
-                              {project.title}
+                              {row.title}
                             </h3>
+                            {row.kind !== "project" && (
+                              <span className="px-2.5 py-1 text-[11px] uppercase tracking-wider border border-black rounded-full text-black whitespace-nowrap">
+                                {row.kind === "app"
+                                  ? "App Store"
+                                  : row.kind === "ongoing"
+                                  ? row.badge
+                                  : "Experience"}
+                              </span>
+                            )}
                           </div>
 
                           {/* Service */}
                           <div className="col-span-3 md:col-span-4">
                             <p className="text-lg md:text-xl text-gray-600 font-light">
-                              {project.services}
+                              {row.services}
                             </p>
                           </div>
 
                           {/* Year */}
                           <div className="col-span-2 md:col-span-2">
                             <p className="text-lg md:text-xl text-gray-500 font-light">
-                              {project.year}
+                              {row.year}
                             </p>
                           </div>
 
                           {/* Arrow */}
                           <div className="col-span-1 md:col-span-1 flex justify-end">
-                            <svg
-                              className="w-6 h-6 text-gray-400 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M7 17L17 7M17 7H7M17 7V17"
-                              />
-                            </svg>
+                            {(row.kind === "app" || row.kind === "project") && (
+                              <svg
+                                className="w-6 h-6 text-gray-400 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M7 17L17 7M17 7H7M17 7V17"
+                                />
+                              </svg>
+                            )}
                           </div>
                         </div>
 
@@ -278,29 +273,42 @@ export default function Page() {
                         <div className="lg:hidden px-6 py-8 space-y-4">
                           <div className="flex justify-between items-start">
                             <div className="flex-1">
-                              <h3 className="text-xl sm:text-2xl md:text-3xl font-medium text-black group-hover:text-gray-600 transition-colors duration-300 mb-2">
-                                {project.title}
-                              </h3>
+                              <div className="flex items-center gap-2 mb-2 flex-wrap">
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-medium text-black group-hover:text-gray-600 transition-colors duration-300">
+                                  {row.title}
+                                </h3>
+                                {row.kind !== "project" && (
+                                  <span className="px-2 py-0.5 text-[10px] uppercase tracking-wider border border-black rounded-full text-black whitespace-nowrap">
+                                    {row.kind === "app"
+                                      ? "App Store"
+                                      : row.kind === "ongoing"
+                                      ? row.badge
+                                      : "Experience"}
+                                  </span>
+                                )}
+                              </div>
                               <p className="text-base sm:text-lg text-gray-600 font-light mb-1">
-                                {project.services}
+                                {row.services}
                               </p>
                               <p className="text-sm sm:text-base text-gray-500 font-light">
-                                {project.year}
+                                {row.year}
                               </p>
                             </div>
-                            <svg
-                              className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 flex-shrink-0 ml-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M7 17L17 7M17 7H7M17 7V17"
-                              />
-                            </svg>
+                            {(row.kind === "app" || row.kind === "project") && (
+                              <svg
+                                className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 flex-shrink-0 ml-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M7 17L17 7M17 7H7M17 7V17"
+                                />
+                              </svg>
+                            )}
                           </div>
                         </div>
                       </motion.div>
@@ -327,55 +335,6 @@ export default function Page() {
 
           {/* Contact Component */}
           <Contact />
-
-          {/* Modal - Sadece desktop'ta göster */}
-          <motion.div
-            ref={modalContainer}
-            variants={scaleAnimation}
-            initial="initial"
-            animate={modal.active ? "enter" : "closed"}
-            className="hidden lg:block h-[350px] w-[400px] fixed top-1/2 left-1/2 bg-white pointer-events-none overflow-hidden z-30"
-          >
-            <div
-              className="h-full w-full relative transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
-              style={{ top: modal.index * -100 + "%" }}
-            >
-              {projects.map((project, index) => (
-                <div
-                  key={`modal_${index}`}
-                  className="h-full w-full flex items-center justify-center"
-                >
-                  <Image
-                    src={project.image}
-                    width={300}
-                    height={0}
-                    alt={project.title}
-                    className="h-auto"
-                    style={{ height: "auto", width: "auto" }}
-                  />
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Cursor - Sadece desktop'ta göster */}
-          <motion.div
-            ref={cursor}
-            className="hidden lg:flex w-20 h-20 rounded-full bg-[#f45232] text-white fixed z-30 items-center justify-center text-sm font-light pointer-events-none"
-            variants={scaleAnimation}
-            initial="initial"
-            animate={modal.active ? "enter" : "closed"}
-          >
-            View
-          </motion.div>
-
-          <motion.div
-            ref={cursorLabel}
-            className="hidden lg:flex w-20 h-20 rounded-full bg-transparent text-white fixed z-30 items-center justify-center text-sm font-light pointer-events-none"
-            variants={scaleAnimation}
-            initial="initial"
-            animate={modal.active ? "enter" : "closed"}
-          />
         </div>
       )}
     </>
