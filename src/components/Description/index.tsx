@@ -7,9 +7,9 @@ import Rounded from "@/app/common/RoundedButton";
 import { useRouter } from "next/navigation";
 
 export default function Description() {
-  const phrase = `Front-End Developer
-  specializing in Web Technologies
-  with 1 year of expertise ― based in Turkey, working as freelancer.`;
+  const phrase = `Mobile & Frontend Developer
+  building cross-platform apps and scalable web products
+  with 3 years of experience ― based in Turkey, co-founder at Guchly Studio.`;
   const description = useRef(null);
   const isInView = useInView(description);
   const router = useRouter();
@@ -37,8 +37,8 @@ export default function Description() {
           animate={isInView ? "open" : "closed"}
           className="cursor-hover"
         >
-          The combination of my hardwork for coding, code & building
-          applications did not took me in a unique place yet!
+          From AI-powered mobile apps to full-stack web platforms, I turn ideas
+          into polished products people actually want to use.
         </motion.p>
         <div data-scroll data-scroll-speed={0.1}>
           <Rounded

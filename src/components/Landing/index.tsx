@@ -88,9 +88,9 @@ export default function Home() {
             fill="white"
           />
         </svg>
-        <p className="cursor-hover font-medium">Software Engineer</p>
+        <p className="cursor-hover font-medium">Co-Founder, Guchly Studio</p>
         <p className="cursor-hover font-medium">
-          Front-End Developer - Freelance
+          Mobile &amp; Frontend Developer
         </p>
       </div>
     </motion.main>

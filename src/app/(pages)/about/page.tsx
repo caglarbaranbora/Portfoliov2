@@ -5,39 +5,11 @@ import Contact from "@/components/Contact";
 import Magnetic from "@/app/common/Magnetic";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Marquee from "@/components/Marquee";
-import Service from "@/components/Service";
 import Image from "next/image";
 import Preloader from "@/components/Preloader";
 import { AnimatePresence } from "framer-motion";
 import { useLoader } from "@/contexts/LoaderContext";
-
-const services = [
-  {
-    title1: "Web",
-    title2: "Developing",
-    src: "/assets/skills/react.svg",
-  },
-  {
-    title1: "Mobile",
-    title2: "Developing",
-    src: "/assets/skills/react-native.svg",
-  },
-  {
-    title1: "Graphic",
-    title2: "Design",
-    src: "/assets/skills/framer.svg",
-  },
-  {
-    title1: "Backend",
-    title2: "Developing",
-    src: "/assets/skills/node.svg",
-  },
-  {
-    title1: "Web",
-    title2: "Hosting",
-    src: "/assets/skills/hosting.svg",
-  },
-];
+import { experience } from "@/lib/experience";
 
 export default function Page() {
   const container = useRef(null);
@@ -133,11 +105,11 @@ export default function Page() {
                   {/* Text Content - Responsive Width */}
                   <div className="text-start w-full lg:max-w-[70%] mb-12 sm:mb-16">
                     <p className="text-[20px] sm:text-[28px] md:text-[35px] lg:text-[40px] font-medium text-black leading-relaxed tracking-1.1em">
-                      <span className="hidden sm:inline m-10"></span>My passion
-                      for front-end development, combined with a strong
-                      foundation in software engineering and real project
-                      experience, allows me to deliver responsive,
-                      user-friendly, and scalable web applications.
+                      <span className="hidden sm:inline m-10"></span>A mobile &amp;
+                      frontend developer and co-founder, I build cross-platform
+                      apps and scalable web products — pairing a software
+                      engineering foundation with real, shipped projects to
+                      deliver fast, polished experiences.
                     </p>
                   </div>
 
@@ -156,34 +128,81 @@ export default function Page() {
                     </div>
                     <div className="flex-1">
                       <p className="font-semibold text-base sm:text-lg text-black leading-relaxed">
-                        I&apos;m not just a developer — I&apos;m a hardworking,
+                        Across 3 years I&apos;ve shipped work for startups and
+                        agencies — from AI-powered mobile apps and banking
+                        platforms to full-stack web products. As co-founder of
+                        Guchly Studio I now own products end to end, from
+                        strategy to release. I&apos;m a hardworking,
                         people-oriented problem solver who thrives on teamwork
-                        and continuous improvement. Whether it&apos;s
-                        contributing to a fintech project, creating a real-time
-                        chat app, or helping others grow, I approach every
-                        challenge with dedication and a smile. My goal is always
-                        to craft elegant solutions that make a real impact.
+                        and shipping things that make a real impact.
                       </p>
                     </div>
                   </div>
+
+                  {/* Skills Marquee - under the photo */}
+                  <div className="mt-12 sm:mt-16">
+                    <Marquee />
+                  </div>
                 </motion.div>
 
-                {/* Services Section */}
-                <div className="min-h-[50vh] lg:h-[100vh] flex items-center justify-center cursor-hover">
-                  <div className="w-[100%]">
-                    <p className="text-[24px] sm:text-[30px] font-semibold mb-8">
-                      services.
-                    </p>
+                {/* Experience Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8 }}
+                  className="mb-24"
+                >
+                  <h2 className="text-[24px] sm:text-[30px] font-semibold text-black mb-8 sm:mb-12">
+                    experience.
+                  </h2>
 
-                    {services.map((service, index) => {
-                      return <Service key={index} project={service} />;
-                    })}
+                  <div className="border-t border-gray-200">
+                    {experience.map((job, index) => (
+                      <motion.div
+                        key={job.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.6, delay: 0.05 * index }}
+                        className="group border-b border-gray-200 py-8 sm:py-10"
+                      >
+                        <div className="flex flex-col lg:flex-row lg:items-baseline lg:justify-between gap-2 lg:gap-8">
+                          <div className="lg:flex-1">
+                            <div className="flex flex-wrap items-center gap-3 mb-3">
+                              <h3 className="text-xl sm:text-2xl md:text-3xl font-medium text-black">
+                                {job.role}
+                                <span className="text-gray-400"> · {job.company}</span>
+                              </h3>
+                              {job.current && (
+                                <span className="px-3 py-1 text-[11px] uppercase tracking-wider border border-black rounded-full text-black">
+                                  Current
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-base sm:text-lg text-gray-600 font-light leading-relaxed lg:max-w-[80%]">
+                              {job.detail}
+                            </p>
+                            <div className="flex flex-wrap gap-2 mt-4">
+                              {job.stack.map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="px-3 py-1 text-xs sm:text-sm text-gray-500 border border-gray-200 rounded-full"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-sm sm:text-base text-gray-500 font-light whitespace-nowrap lg:text-right">
+                            {job.period}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
-                </div>
-                {/* Skills Marquee Section */}
-                <div className="mb-24">
-                  <Marquee />
-                </div>
+                </motion.div>
+
               </div>
             </div>
 

@@ -78,8 +78,19 @@ export default function Header({ textColor = "#fff" }: HeaderProps) {
           <div className="flex" style={{ color: textColor }}>
             <Magnetic>
               <div className={styles.el}>
+                <Link href={"/"} className="font-medium">
+                  Home
+                </Link>
+                <div
+                  className={styles.indicator}
+                  style={{ backgroundColor: textColor }}
+                ></div>
+              </div>
+            </Magnetic>
+            <Magnetic>
+              <div className={styles.el}>
                 <Link href={"/work"} className="font-medium">
-                  Work
+                  Projects
                 </Link>
                 <div
                   className={styles.indicator}
